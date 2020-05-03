@@ -1,9 +1,12 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"io"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -58,11 +61,13 @@ func readCommand() int {
 func startMentoring() {
 	fmt.Println("Mentoring")
 
-	portals := []string{
+	/* portals := []string{
 		"https://google.com",
 		"https://facebook.com",
 		"https://twitter.com",
-		"http://random-status-code.herokuapp.com"}
+	    "http://random-status-code.herokuapp.com"} */
+
+	portals := readPortalsFile()
 
 	for i := 0; i < mentoringTimes; i++ {
 		for index, portal := range portals {
@@ -78,10 +83,35 @@ func startMentoring() {
 }
 
 func doMentoringTest(portal string) {
-	response, _ := http.Get(portal)
+	response, err := http.Get(portal)
+
+	if err != nil {
+		fmt.Println("Error: ", err)
+	}
+
 	if response.StatusCode == 200 {
 		fmt.Println("The site", portal, "its ok!")
 	} else {
 		fmt.Println("The site", portal, "its downtime. Status code: ", response.StatusCode)
 	}
+}
+
+func readPortalsFile() []string {
+	file, err := os.Open("resources/sites.txt")
+	if err != nil {
+		fmt.Println("Error: was not possible to read file.", err)
+	}
+
+	var portals []string
+	reader := bufio.NewReader(file)
+	for {
+		line, err := reader.ReadString('\n')
+		line = strings.TrimSpace(line)
+		portals = append(portals, line)
+		if err == io.EOF {
+			break
+		}
+	}
+	file.Close()
+	return portals
 }
