@@ -2,35 +2,46 @@ package main
 
 import (
 	"fmt"
+	"os"
 )
 
 func main() {
-	personName := "John Doe"
-	appVersion := 1.1
-	age := 28
 
-	fmt.Println("The first Go lang's app written by mr.", personName, "age", age)
-	fmt.Println("App Version: ", appVersion)
+	showIntroduction()
+	showMenu()
 
-	fmt.Println("1- Start mentoring")
-	fmt.Println("2- Show logs")
-	fmt.Println("3- Exit")
-
-	var command int
-	fmt.Scan(&command)
-
-	fmt.Println("Pointer in memory for command variable is: ", &command)
-	fmt.Println("The command choosen:", command)
-
+	command := readCommand()
 	switch command {
 	case 1:
 		fmt.Println("Mentoring")
 	case 2:
 		fmt.Println("Logs")
 	case 0:
-		fmt.Println("Exit")
+		os.Exit(0)
 	default:
-		fmt.Println("Unknown command.")
+		os.Exit(-1)
 	}
 
+}
+
+func showIntroduction() {
+	personName := "John Doe"
+	appVersion := 1.1
+	age := 28
+
+	fmt.Println("The first Go lang's app written by mr.", personName, "age", age)
+	fmt.Println("App Version: ", appVersion)
+}
+
+func showMenu() {
+	fmt.Println("1- Start mentoring")
+	fmt.Println("2- Show logs")
+	fmt.Println("0- Exit")
+}
+
+func readCommand() int {
+	var command int
+	fmt.Scan(&command)
+	fmt.Println("The command choosen:", command)
+	return command
 }
