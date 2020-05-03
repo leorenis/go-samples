@@ -56,12 +56,16 @@ func startMentoring() {
 	portals := []string{"https://google.com", "https://facebook.com", "https://twitter.com"}
 
 	for index, portal := range portals {
-		response, _ := http.Get(portal)
 		fmt.Println("Passing for slice position", index, "was found portal", portal)
-		if response.StatusCode == 200 {
-			fmt.Println("The site", portal, "its ok!")
-		} else {
-			fmt.Println("The site", portal, "its downtime. Status code: ", response.StatusCode)
-		}
+		doMentoringTest(portal)
+	}
+}
+
+func doMentoringTest(portal string) {
+	response, _ := http.Get(portal)
+	if response.StatusCode == 200 {
+		fmt.Println("The site", portal, "its ok!")
+	} else {
+		fmt.Println("The site", portal, "its downtime. Status code: ", response.StatusCode)
 	}
 }
