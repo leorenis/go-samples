@@ -112,6 +112,7 @@ func readPortalsFile() []string {
 			break
 		}
 	}
+
 	file.Close()
 	return portals
 }
