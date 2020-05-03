@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"reflect"
 )
 
 func main() {
@@ -13,5 +12,25 @@ func main() {
 	fmt.Println("The first Go lang's app written by mr.", personName, "age", age)
 	fmt.Println("App Version: ", appVersion)
 
-	fmt.Println("Types: ", reflect.TypeOf(personName), reflect.TypeOf(age))
+	fmt.Println("1- Start mentoring")
+	fmt.Println("2- Show logs")
+	fmt.Println("3- Exit")
+
+	var command int
+	fmt.Scan(&command)
+
+	fmt.Println("Pointer in memory for command variable is: ", &command)
+	fmt.Println("The command choosen:", command)
+
+	switch command {
+	case 1:
+		fmt.Println("Mentoring")
+	case 2:
+		fmt.Println("Logs")
+	case 0:
+		fmt.Println("Exit")
+	default:
+		fmt.Println("Unknown command.")
+	}
+
 }
