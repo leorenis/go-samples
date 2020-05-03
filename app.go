@@ -4,7 +4,11 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"time"
 )
+
+const mentoringTimes = 5
+const mentoringDelay = 5
 
 func main() {
 
@@ -47,18 +51,30 @@ func readCommand() int {
 	var command int
 	fmt.Scan(&command)
 	fmt.Println("The command choosen:", command)
+	fmt.Println("")
 	return command
 }
 
 func startMentoring() {
 	fmt.Println("Mentoring")
 
-	portals := []string{"https://google.com", "https://facebook.com", "https://twitter.com"}
+	portals := []string{
+		"https://google.com",
+		"https://facebook.com",
+		"https://twitter.com",
+		"http://random-status-code.herokuapp.com"}
 
-	for index, portal := range portals {
-		fmt.Println("Passing for slice position", index, "was found portal", portal)
-		doMentoringTest(portal)
+	for i := 0; i < mentoringTimes; i++ {
+		for index, portal := range portals {
+			fmt.Println("Passing for slice position", index, "was found portal", portal)
+			doMentoringTest(portal)
+		}
+		time.Sleep(mentoringDelay * time.Second)
+		fmt.Println("")
 	}
+
+	fmt.Println("")
+
 }
 
 func doMentoringTest(portal string) {
