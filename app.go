@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"net/http"
 	"os"
 	"strconv"
@@ -26,7 +27,7 @@ func main() {
 		case 1:
 			startMentoring()
 		case 2:
-			fmt.Println("Logs")
+			printLogs()
 		case 0:
 			os.Exit(0)
 		default:
@@ -125,6 +126,18 @@ func saveLog(portal string, status bool) {
 	if err != nil {
 		fmt.Println(err)
 	}
-	file.WriteString(portal + ", online=" + strconv.FormatBool(status) + "\n")
+	file.WriteString(time.Now().Format("02/01/2006 15:04:05") + " - " + portal + ", online=" + strconv.FormatBool(status) + "\n")
 	file.Close()
+}
+
+func printLogs() {
+	file, err := ioutil.ReadFile("logs.txt")
+	if err != nil {
+		fmt.Println(err)
+	}
+	if len(file) == 0 {
+		fmt.Println("Empty file")
+	} else {
+		fmt.Println(string(file))
+	}
 }
