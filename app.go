@@ -122,7 +122,7 @@ func readPortalsFile() []string {
 }
 
 func saveLog(portal string, status bool) {
-	file, err := os.OpenFile("logs.txt", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	file, err := os.OpenFile("resources/logs.txt", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -131,7 +131,7 @@ func saveLog(portal string, status bool) {
 }
 
 func printLogs() {
-	file, err := ioutil.ReadFile("logs.txt")
+	file, err := ioutil.ReadFile("resources/logs.txt")
 	if err != nil {
 		fmt.Println(err)
 	}
