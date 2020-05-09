@@ -6,6 +6,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -91,8 +92,10 @@ func doMentoringTest(portal string) {
 
 	if response.StatusCode == 200 {
 		fmt.Println("The site", portal, "its ok!")
+		saveLog(portal, true)
 	} else {
 		fmt.Println("The site", portal, "its downtime. Status code: ", response.StatusCode)
+		saveLog(portal, false)
 	}
 }
 
@@ -115,4 +118,13 @@ func readPortalsFile() []string {
 
 	file.Close()
 	return portals
+}
+
+func saveLog(portal string, status bool) {
+	file, err := os.OpenFile("logs.txt", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	if err != nil {
+		fmt.Println(err)
+	}
+	file.WriteString(portal + ", online=" + strconv.FormatBool(status) + "\n")
+	file.Close()
 }
