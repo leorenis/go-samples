@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// CurrentAccount is
 type CurrentAccount struct {
 	holder  string
 	agency  int
