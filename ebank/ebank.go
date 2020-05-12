@@ -10,7 +10,7 @@ type CurrentAccount struct {
 	balance float64
 }
 
-// CurrentAccount is
+// ( c *CurrentAccount is to similar java `this` )
 func (c *CurrentAccount) Withdraw(amount float64) float64 {
 	canWithDraw := amount >= 0 && amount <= c.balance
 	if canWithDraw {
@@ -22,9 +22,11 @@ func (c *CurrentAccount) Withdraw(amount float64) float64 {
 func main() {
 	// testsPointers()
 	mockAccount := CurrentAccount{"John Mock Doe", 343, 3434, 500.}
-	fmt.Println("Withdraw:", mockAccount.balance)
+	mock2Account := CurrentAccount{"Mock Ac Two", 343, 3434, 1200}
+	fmt.Println("Withdraw:", mockAccount.balance, mock2Account.balance)
 	mockAccount.Withdraw(200)
-	fmt.Println("Withdraw:", mockAccount.balance)
+	mock2Account.Withdraw(200)
+	fmt.Println("Withdraw:", mock2Account.balance, mock2Account.balance)
 }
 
 func testsPointers() {
