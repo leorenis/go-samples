@@ -10,8 +10,21 @@ type CurrentAccount struct {
 	balance float64
 }
 
+// CurrentAccount is
+func (c *CurrentAccount) Withdraw(amount float64) float64 {
+	canWithDraw := amount >= 0 && amount <= c.balance
+	if canWithDraw {
+		c.balance -= amount
+	}
+	return c.balance
+}
+
 func main() {
-	testsPointers()
+	// testsPointers()
+	mockAccount := CurrentAccount{"John Mock Doe", 343, 3434, 500.}
+	fmt.Println("Withdraw:", mockAccount.balance)
+	mockAccount.Withdraw(200)
+	fmt.Println("Withdraw:", mockAccount.balance)
 }
 
 func testsPointers() {
