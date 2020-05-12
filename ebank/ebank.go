@@ -18,6 +18,11 @@ func main() {
 	mockAccount.Withdraw(200)
 	mock2Account.Withdraw(200)
 	fmt.Println("Withdraw:", mock2Account.balance, mock2Account.balance)
+
+	// Tests variadics functions
+	fmt.Println("Sum:", sum(1, 2, 3))
+	sliceNums := []int{0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144}
+	fmt.Println("Sum:", sum(sliceNums...))
 }
 
 // ( c *CurrentAccount is to similar java `this` )
@@ -27,6 +32,15 @@ func (c *CurrentAccount) Withdraw(amount float64) float64 {
 		c.balance -= amount
 	}
 	return c.balance
+}
+
+// Variadic functions
+func sum(nums ...int) int {
+	total := 0
+	for _, num := range nums {
+		total += num
+	}
+	return total
 }
 
 func testsPointers() {
