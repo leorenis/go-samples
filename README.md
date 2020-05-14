@@ -1,2 +1,2 @@
 # go-samples
-First steps with golang
+Tips and documentation abount golang leaning :=)
