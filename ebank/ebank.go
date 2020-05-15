@@ -68,5 +68,4 @@ func testsPointers() {
 
 	jonysAccount = new(CurrentAccount)
 	fmt.Println(*jonysAccount, jonysAccount, &jonysAccount)
-
 }
