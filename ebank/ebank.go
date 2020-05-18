@@ -34,11 +34,12 @@ func (c *CurrentAccount) Withdraw(amount float64) float64 {
 	return c.balance
 }
 
-func (c *CurrentAccount) Deposit(amount float64) {
+func (c *CurrentAccount) Deposit(amount float64) float64 {
 	canDeposit := amount > 0
 	if canDeposit {
 		c.balance += amount
 	}
+	return c.balance
 }
 
 // Variadic functions
