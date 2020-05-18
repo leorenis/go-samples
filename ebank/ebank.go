@@ -34,6 +34,13 @@ func (c *CurrentAccount) Withdraw(amount float64) float64 {
 	return c.balance
 }
 
+func (c *CurrentAccount) Deposit(amount float64) {
+	canDeposit := amount > 0
+	if canDeposit {
+		c.balance += amount
+	}
+}
+
 // Variadic functions
 func sum(nums ...int) int {
 	total := 0
