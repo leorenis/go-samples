@@ -13,7 +13,7 @@ type CurrentAccount struct {
 func main() {
 	// testsPointers()
 	mockAccount := CurrentAccount{"John Mock Doe", 343, 3434, 500.}
-	mock2Account := CurrentAccount{"Mock Ac Two", 343, 3434, 1200}
+	mock2Account := CurrentAccount{"Mock Acks Two", 943, 3476, 1200}
 	fmt.Println("Withdraw:", mockAccount.balance, mock2Account.balance)
 	mockAccount.Withdraw(200)
 	mock2Account.Withdraw(200)
@@ -23,6 +23,17 @@ func main() {
 	fmt.Println("Sum:", sum(1, 2, 3))
 	sliceNums := []int{0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144}
 	fmt.Println("Sum:", sum(sliceNums...))
+
+	// Tests Deposits
+	mock3Account := CurrentAccount{"John Wick Doe", 123, 1234, 5000.}
+	mock3Account.Deposit(100)
+	fmt.Println(mock3Account)
+
+	// Tests Transfer...
+	mock4Account := CurrentAccount{"John Karmac Doe", 313, 8454, 9800.} // He transfers to
+	mock5Account := CurrentAccount{"John Lenon Doe", 633, 6534, 6400.}  // Him
+	mock4Account.Transfer(450, &mock5Account)
+	fmt.Println(mock4Account, mock5Account)
 }
 
 // ( c *CurrentAccount is to similar java `this` )
@@ -40,6 +51,16 @@ func (c *CurrentAccount) Deposit(amount float64) float64 {
 		c.balance += amount
 	}
 	return c.balance
+}
+
+func (c *CurrentAccount) Transfer(amount float64, targetAccount *CurrentAccount) bool {
+	canTransfer := amount < c.balance && amount > 0
+	if canTransfer {
+		c.balance -= amount
+		targetAccount.Deposit(amount)
+		return true
+	}
+	return false
 }
 
 // Variadic functions
