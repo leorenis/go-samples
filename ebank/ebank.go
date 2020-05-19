@@ -3,32 +3,12 @@ package main
 import (
 	"fmt"
 	"gosamples/ebank/accounts"
+	"gosamples/ebank/customers"
 )
 
 func main() {
 	// testsPointers()
-	mockAccount := accounts.CurrentAccount{"John Mock Doe", 343, 3434, 500.}
-	mock2Account := accounts.CurrentAccount{"Mock Acks Two", 943, 3476, 1200}
-	fmt.Println("Withdraw:", mockAccount.Balance, mock2Account.Balance)
-	mockAccount.Withdraw(200)
-	mock2Account.Withdraw(200)
-	fmt.Println("Withdraw:", mock2Account.Balance, mock2Account.Balance)
-
-	// Tests variadics functions
-	fmt.Println("Sum:", sum(1, 2, 3))
-	sliceNums := []int{0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144}
-	fmt.Println("Sum:", sum(sliceNums...))
-
-	// Tests Deposits
-	mock3Account := accounts.CurrentAccount{"John Wick Doe", 123, 1234, 5000.}
-	mock3Account.Deposit(100)
-	fmt.Println(mock3Account)
-
-	// Tests Transfer...
-	mock4Account := accounts.CurrentAccount{"John Karmac Doe", 313, 8454, 9800.} // He transfers to
-	mock5Account := accounts.CurrentAccount{"John Lenon Doe", 633, 6534, 6400.}  // Him
-	mock4Account.Transfer(450, &mock5Account)
-	fmt.Println(mock4Account, mock5Account)
+	testsAccounts()
 }
 
 // Variadic functions
@@ -41,8 +21,10 @@ func sum(nums ...int) int {
 }
 
 func testsPointers() {
-	petersAccount := accounts.CurrentAccount{"John Doe", 9889, 73784, 199909.909}
-	leosAccount := accounts.CurrentAccount{"Leo Doe", 343, 3434, 10000000.909}
+	perterCustomer := customers.Customer{"Peter Doe", "000.000.000-11", "Mock"}
+	leosCustomer := customers.Customer{"Leo Doe", "100.010.000-01", "Mock"}
+	petersAccount := mockAccountBuilder(9889, 73784, 199909.909, perterCustomer)
+	leosAccount := mockAccountBuilder(343, 3434, 10000000.909, leosCustomer)
 	fmt.Println(petersAccount)
 	fmt.Println(leosAccount)
 
@@ -51,18 +33,59 @@ func testsPointers() {
 	var jonysAccount *accounts.CurrentAccount
 	marysAccount = new(accounts.CurrentAccount)
 	jonysAccount = new(accounts.CurrentAccount)
-	marysAccount.Holder = "Mary Doe"
-	jonysAccount.Holder = "Jony Bale"
+	marysAccount.Holder = customers.Customer{"Mary Doe", "700.070.900-11", "Mock"}
+	jonysAccount.Holder = customers.Customer{"Jony Bale", "092.030.080-11", "Mock"}
 
 	fmt.Println(*jonysAccount, jonysAccount, &jonysAccount)
 	fmt.Println(marysAccount)
 
 	//// Pointers
-	s1 := accounts.CurrentAccount{"P", 1, 10, 1.0}
-	s2 := accounts.CurrentAccount{"P", 1, 10, 1.0}
+	s1 := mockAccountBuilder(1, 10, 1.0, perterCustomer)
+	s2 := mockAccountBuilder(1, 10, 1.0, leosCustomer)
 
 	fmt.Println("s1", "and s2", "are:", s1 == s2)
 
 	jonysAccount = new(accounts.CurrentAccount)
 	fmt.Println(*jonysAccount, jonysAccount, &jonysAccount)
+}
+
+func testsAccounts() {
+	mockAccount := mockAccountBuilder(323, 4234, 2960., customers.Customer{"Mock Acks One", "101.011.001-10", "Mock2"})
+	mock2Account := mockAccountBuilder(943, 3476, 1200, customers.Customer{"Mock Acks Two", "001.001.001-01", "Mock2"})
+	fmt.Println("Withdraw:", mockAccount.GetBalance(), mock2Account.GetBalance())
+	mockAccount.Withdraw(200)
+	mock2Account.Withdraw(200)
+	fmt.Println("Withdraw:", mock2Account.GetBalance(), mock2Account.GetBalance())
+
+	// Tests variadics functions
+	fmt.Println("Sum:", sum(1, 2, 3))
+	sliceNums := []int{0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144}
+	fmt.Println("Sum:", sum(sliceNums...))
+
+	// Tests Deposits
+	mock3Account := mockAccountBuilder(123, 1234, 5000., customers.Customer{"John Wick Doe", "100.100.100-10", "Researcher"})
+	mock3Account.Deposit(100)
+	fmt.Println(mock3Account)
+
+	// Tests Transfer...
+	mock4Account := mockAccountBuilder(313, 8454, 1900, customers.Customer{"John Karmac Doe", "010.010.010-01", "Dev"})   // He transfers to
+	mock5Account := mockAccountBuilder(633, 6534, 1200, customers.Customer{"John Lenon Doe", "101.010.110-10", "Singer"}) // Him
+	mock4Account.Transfer(450, &mock5Account)
+	fmt.Println(mock4Account, mock5Account)
+
+	// Tests get balance
+	mock6Account := accounts.CurrentAccount{}
+	mock6Account.Deposit(100)
+
+	fmt.Println(mock6Account.GetBalance())
+}
+
+func mockAccountBuilder(agency int, number int, ammount float64, customer customers.Customer) accounts.CurrentAccount {
+	var acountReference *accounts.CurrentAccount
+	acountReference = new(accounts.CurrentAccount)
+	acountReference.Holder = customer
+	acountReference.Agency = agency
+	acountReference.Number = number
+	acountReference.Deposit(ammount)
+	return *acountReference
 }
