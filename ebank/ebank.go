@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"gosamples/ebank/accounts"
+	"gosamples/ebank/billets"
 	"gosamples/ebank/customers"
 )
 
@@ -76,8 +77,17 @@ func testsAccounts() {
 	// Tests get balance
 	mock6Account := accounts.CurrentAccount{}
 	mock6Account.Deposit(100)
-
 	fmt.Println(mock6Account.GetBalance())
+
+	// Tests billet Payments
+	mock7Account := mockAccountBuilder(6263, 82384, 48989, customers.Customer{"Josh Lookort", "934.783.039-38", "Doctor"})
+	billets.Pay(&mock7Account, 300)
+	fmt.Println(mock7Account)
+
+	savingAccount := accounts.SavingAccount{}
+	savingAccount.Deposit(600)
+	billets.Pay(&savingAccount, 480)
+
 }
 
 func mockAccountBuilder(agency int, number int, ammount float64, customer customers.Customer) accounts.CurrentAccount {

@@ -4,10 +4,9 @@ import "gosamples/ebank/customers"
 
 // CurrentAccount is
 type CurrentAccount struct {
-	Holder  customers.Customer
-	Agency  int
-	Number  int
-	balance float64
+	Holder         customers.Customer
+	Agency, Number int
+	balance        float64
 }
 
 // ( c *CurrentAccount is to similar java `this` )
