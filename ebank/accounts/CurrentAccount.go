@@ -9,7 +9,7 @@ type CurrentAccount struct {
 	balance        float64
 }
 
-// ( c *CurrentAccount is to similar java `this` )
+// Withdraw is
 func (c *CurrentAccount) Withdraw(amount float64) float64 {
 	canWithDraw := amount >= 0 && amount <= c.balance
 	if canWithDraw {
@@ -18,6 +18,7 @@ func (c *CurrentAccount) Withdraw(amount float64) float64 {
 	return c.balance
 }
 
+// Deposit is
 func (c *CurrentAccount) Deposit(amount float64) float64 {
 	canDeposit := amount > 0
 	if canDeposit {
@@ -26,6 +27,7 @@ func (c *CurrentAccount) Deposit(amount float64) float64 {
 	return c.balance
 }
 
+// Transfer is
 func (c *CurrentAccount) Transfer(amount float64, targetAccount *CurrentAccount) bool {
 	canTransfer := amount < c.balance && amount > 0
 	if canTransfer {
@@ -36,6 +38,7 @@ func (c *CurrentAccount) Transfer(amount float64, targetAccount *CurrentAccount)
 	return false
 }
 
+// GetBalance is
 func (c *CurrentAccount) GetBalance() float64 {
 	return c.balance
 }
