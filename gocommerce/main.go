@@ -1,6 +1,7 @@
 package main
 
 import (
+	"gosamples/gocommerce/products"
 	"net/http"
 	"text/template"
 )
@@ -14,5 +15,9 @@ func main() {
 
 // index is
 func index(w http.ResponseWriter, r *http.Request) {
-	htmlTemplates.ExecuteTemplate(w, "Index", nil)
+	products := []products.Product{
+		{"Mackbook Pro", 2600., 1, "HD 512 SSD, Retina"},
+		{"iPhone11 Pro", 1998., 1, "Plus"},
+	}
+	htmlTemplates.ExecuteTemplate(w, "Index", products)
 }
