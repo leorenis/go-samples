@@ -5,7 +5,7 @@ import (
 	"text/template"
 )
 
-var htmlTemplates = template.Must(template.ParseGlob("templates/*.html"))
+var htmlTemplates = template.Must(template.ParseGlob("resources/*.html"))
 
 func main() {
 	http.HandleFunc("/", index)
