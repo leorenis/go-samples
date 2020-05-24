@@ -48,7 +48,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 	}
 
 	htmlTemplates.ExecuteTemplate(w, "Index", products)
-	db.Close()
+	defer db.Close()
 }
 
 func setupDB() {
