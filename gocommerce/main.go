@@ -1,8 +1,8 @@
 package main
 
 import (
-	"database/sql"
-	"gosamples/gocommerce/products"
+	"gosamples/gocommerce/db"
+	"gosamples/gocommerce/models/products"
 	"net/http"
 	"text/template"
 
@@ -13,7 +13,7 @@ var htmlTemplates = template.Must(template.ParseGlob("resources/templates/*.html
 
 func main() {
 	// setup database
-	setupDB()
+	db.SetupDB()
 	// Up server
 	http.HandleFunc("/", index)
 	http.ListenAndServe(":8000", nil)
@@ -21,7 +21,7 @@ func main() {
 
 // index is
 func index(w http.ResponseWriter, r *http.Request) {
-	db := openDBConnection()
+	db := db.OpenDBConnection()
 	rows, err := db.Query("select * from products")
 	if err != nil {
 		panic(err.Error)
@@ -49,26 +49,4 @@ func index(w http.ResponseWriter, r *http.Request) {
 
 	htmlTemplates.ExecuteTemplate(w, "Index", products)
 	defer db.Close()
-}
-
-func setupDB() {
-	db := openDBConnection()
-	statement, _ := db.Prepare("create table if not exists products (id INTEGER PRIMARY KEY, name TEXT, price REAL, amount INTEGER, description TEXT)")
-	statement.Exec()
-
-	statement, _ = db.Prepare("DELETE FROM products")
-	statement.Exec()
-
-	statement, _ = db.Prepare("INSERT INTO products (name, price, amount, description) VALUES (?, ?, ?, ?)")
-	statement.Exec("iPhone11 Pro", 1998., 1, "Plus")
-	statement.Exec("Mackbook Pro", 2600., 2, "HD 512 SSD, Retina")
-	defer db.Close()
-}
-
-func openDBConnection() *sql.DB {
-	db, err := sql.Open("sqlite3", "resources/database/gocommerce.db")
-	if err != nil {
-		panic("Failed to connect database")
-	}
-	return db
 }
