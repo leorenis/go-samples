@@ -8,4 +8,5 @@ import (
 // Load is
 func Load() {
 	http.HandleFunc("/", controllers.Index)
+	http.HandleFunc("/new", controllers.New)
 }
