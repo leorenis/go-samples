@@ -2,26 +2,19 @@ package main
 
 import (
 	"gosamples/gocommerce/db"
-	"gosamples/gocommerce/models/products"
+	"gosamples/gocommerce/routes"
 	"net/http"
-	"text/template"
 
 	_ "github.com/mattn/go-sqlite3"
 )
 
-var htmlTemplates = template.Must(template.ParseGlob("resources/templates/*.html"))
-
 func main() {
 	// setup database
 	db.SetupDB()
+
+	// Load Routes
+	routes.Load()
+
 	// Up server
-	http.HandleFunc("/", index)
 	http.ListenAndServe(":8000", nil)
-}
-
-// index is
-func index(w http.ResponseWriter, r *http.Request) {
-	products := products.FindAll()
-
-	htmlTemplates.ExecuteTemplate(w, "Index", products)
 }
