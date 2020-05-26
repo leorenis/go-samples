@@ -11,7 +11,6 @@ var htmlTemplates = template.Must(template.ParseGlob("resources/templates/*.html
 // Index is
 func Index(w http.ResponseWriter, r *http.Request) {
 	products := products.FindAll()
-
 	htmlTemplates.ExecuteTemplate(w, "Index", products)
 }
 
