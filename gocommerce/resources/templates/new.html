@@ -12,8 +12,12 @@
       <div class="container">
         <div class="row">
           <div class="col">
-            <p class="h4 font-weight-lighter">New product</p>
-            <form>
+            <div class="jumbotron jumbotron-fluid">
+              <div class="container">
+                <p class="h4 font-weight-lighter">New product</p>
+              </div>
+            </div>
+            <form method="POST" action="insert">
               <div class="form-group row">
                 <label for="nameId" class="col-sm-2 col-form-label">Name</label>
                 <div class="col-sm-10">
@@ -38,16 +42,16 @@
                   <textarea name="description" id="descriptionId" class="form-control" cols="30" rows="10"></textarea>
                 </div>
               </div>
+              <div class="card-footer">
+                <a href="/" class="btn btn-info mb-2">
+                  Back home
+                </a>
+                <button type="submit" class="btn btn-primary mb-2">
+                  Save
+                </button>
+              </div>
             </form>
           </div>
-        </div>
-        <div class="card-footer">
-          <a href="/" class="btn btn-info mb-2">
-            Back home
-          </a>
-          <button type="submit" class="btn btn-primary mb-2">
-            Save
-          </button>
         </div>
       </div>
     </main>
