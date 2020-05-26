@@ -21,32 +21,7 @@ func main() {
 
 // index is
 func index(w http.ResponseWriter, r *http.Request) {
-	db := db.OpenDBConnection()
-	rows, err := db.Query("select * from products")
-	if err != nil {
-		panic(err.Error)
-	}
-	product := products.Product{}
-	products := []products.Product{}
-
-	for rows.Next() {
-		var id, amount int
-		var name, description string
-		var price float64
-
-		err = rows.Scan(&id, &name, &price, &amount, &description)
-		if err != nil {
-			panic(err.Error())
-		}
-
-		product.Name = name
-		product.Description = description
-		product.Price = price
-		product.Amount = amount
-
-		products = append(products, product)
-	}
+	products := products.FindAll()
 
 	htmlTemplates.ExecuteTemplate(w, "Index", products)
-	defer db.Close()
 }
