@@ -13,13 +13,41 @@
         <div class="row">
           <div class="col">
             <p class="h4 font-weight-lighter">New product</p>
-            
+            <form>
+              <div class="form-group row">
+                <label for="nameId" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-10">
+                  <input type="name" class="form-control" id="nameId" placeholder="Name">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="priceId" class="col-sm-2 col-form-label">Price</label>
+                <div class="col-sm-10">
+                  <input type="price" class="form-control" id="priceId" placeholder="Price">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="amountId" class="col-sm-2 col-form-label">Amount</label>
+                <div class="col-sm-10">
+                  <input type="amount" class="form-control" id="amountId" placeholder="Amount">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="descriptionId" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-10">
+                  <textarea name="description" id="descriptionId" class="form-control" cols="30" rows="10"></textarea>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
         <div class="card-footer">
-          <a href="/new" class="btn btn-primary mb-2">
-            New
+          <a href="/" class="btn btn-info mb-2">
+            Back home
           </a>
+          <button type="submit" class="btn btn-primary mb-2">
+            Save
+          </button>
         </div>
       </div>
     </main>
