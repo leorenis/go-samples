@@ -40,3 +40,8 @@ func FindAll() []Product {
 	defer db.Close()
 	return products
 }
+
+// Create is
+func Create(product Product) {
+
+}
