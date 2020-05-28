@@ -43,5 +43,11 @@ func FindAll() []Product {
 
 // Create is
 func Create(product Product) {
-
+	db := db.OpenDBConnection()
+	sql, err := db.Prepare("INSERT INTO products (name, price, amount, description) VALUES ($1, $2, $3, $4)")
+	if nil != err {
+		panic(err.Error())
+	}
+	sql.Exec(product.Name, product.Price, product.Amount, product.Description)
+	db.Close()
 }
