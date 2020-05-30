@@ -39,7 +39,7 @@ func Insert(w http.ResponseWriter, req *http.Request) {
 			log.Println("Impossible to convert amount", err)
 		}
 
-		products.Create(products.Product{name, convertedPrice, convertedAmount, description})
+		products.Create(name, convertedPrice, convertedAmount, description)
 	}
 	http.Redirect(w, req, "/", 301)
 }

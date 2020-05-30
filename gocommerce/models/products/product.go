@@ -4,6 +4,7 @@ import "gosamples/gocommerce/db"
 
 // Product is
 type Product struct {
+	ID          int
 	Name        string
 	Price       float64
 	Amount      int
@@ -30,6 +31,7 @@ func FindAll() []Product {
 			panic(err.Error())
 		}
 
+		product.ID = id
 		product.Name = name
 		product.Description = description
 		product.Price = price
@@ -42,12 +44,12 @@ func FindAll() []Product {
 }
 
 // Create is
-func Create(product Product) {
+func Create(name string, convertedPrice float64, convertedAmount int, description string) {
 	db := db.OpenDBConnection()
 	sql, err := db.Prepare("INSERT INTO products (name, price, amount, description) VALUES ($1, $2, $3, $4)")
 	if nil != err {
 		panic(err.Error())
 	}
-	sql.Exec(product.Name, product.Price, product.Amount, product.Description)
+	sql.Exec(name, convertedPrice, convertedAmount, description)
 	db.Close()
 }
