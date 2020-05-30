@@ -53,3 +53,14 @@ func Create(name string, convertedPrice float64, convertedAmount int, descriptio
 	sql.Exec(name, convertedPrice, convertedAmount, description)
 	db.Close()
 }
+
+// Delete is
+func Delete(id int) {
+	db := db.OpenDBConnection()
+	prepareStatement, err := db.Prepare("DELETE products WHERE id = ?")
+	if err != nil {
+		panic(err)
+	}
+	prepareStatement.Exec(id)
+	db.Close()
+}
