@@ -51,7 +51,7 @@ func Create(name string, convertedPrice float64, convertedAmount int, descriptio
 		panic(err.Error())
 	}
 	sql.Exec(name, convertedPrice, convertedAmount, description)
-	db.Close()
+	defer db.Close()
 }
 
 // Delete is
@@ -62,5 +62,5 @@ func Delete(id int) {
 		panic(err)
 	}
 	prepareStatement.Exec(id)
-	db.Close()
+	defer db.Close()
 }
