@@ -48,6 +48,7 @@ func Insert(w http.ResponseWriter, req *http.Request) {
 func Delete(w http.ResponseWriter, req *http.Request) {
 	// id := req.FormValue("id")
 	id := req.URL.Query().Get("id")
+	log.Println(id)
 	convertedID, err := strconv.Atoi(id)
 	if err != nil {
 		panic("Error to convert id")
