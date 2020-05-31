@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"gosamples/gocommerce/models/products"
 	"html/template"
 	"log"
@@ -42,15 +41,14 @@ func Insert(w http.ResponseWriter, req *http.Request) {
 
 		products.Create(name, convertedPrice, convertedAmount, description)
 	}
-	http.Redirect(w, req, "/", 301)
+	http.Redirect(w, req, "/", 303)
 }
 
 // Delete is
 func Delete(w http.ResponseWriter, req *http.Request) {
 	// id := req.FormValue("id")
-	fmt.Println("Hii")
 	id := req.URL.Query().Get("id")
 	products.Delete(id)
 
-	http.Redirect(w, req, "/", 301)
+	http.Redirect(w, req, "/", 303)
 }

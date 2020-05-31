@@ -16,5 +16,5 @@ func main() {
 	routes.Load()
 
 	// Up server
-	http.ListenAndServe(":8000", nil)
+	http.ListenAndServe(":8001", nil)
 }
