@@ -55,7 +55,7 @@ func Create(name string, convertedPrice float64, convertedAmount int, descriptio
 }
 
 // Delete is
-func Delete(id int) {
+func Delete(id string) {
 	db := db.OpenDBConnection()
 	prepareStatement, err := db.Prepare("DELETE FROM products WHERE id = $1")
 	if err != nil {
