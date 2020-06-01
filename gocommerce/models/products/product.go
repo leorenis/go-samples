@@ -64,3 +64,31 @@ func Delete(id string) {
 	prepareStatement.Exec(id)
 	defer db.Close()
 }
+
+// FindByID is
+func FindByID(id string) Product {
+	db := db.OpenDBConnection()
+	row, err := db.Query("SELECT * FROM products WHERE id = ?", id)
+	if nil != err {
+		panic(err)
+	}
+	product := Product{}
+	for row.Next() {
+		var id, amount int
+		var name, description string
+		var price float64
+
+		err = row.Scan(&id, &name, &price, &amount, &description)
+		if err != nil {
+			panic(err.Error())
+		}
+
+		product.ID = id
+		product.Name = name
+		product.Description = description
+		product.Price = price
+		product.Amount = amount
+	}
+	defer db.Close()
+	return product
+}

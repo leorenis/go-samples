@@ -52,3 +52,10 @@ func Delete(w http.ResponseWriter, req *http.Request) {
 
 	http.Redirect(w, req, "/", 303)
 }
+
+// Edit is
+func Edit(w http.ResponseWriter, req *http.Request) {
+	id := req.URL.Query().Get("id")
+	product := products.FindByID(id)
+	htmlTemplates.ExecuteTemplate(w, "Edit", product)
+}
