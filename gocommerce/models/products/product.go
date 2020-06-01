@@ -1,6 +1,8 @@
 package products
 
-import "gosamples/gocommerce/db"
+import (
+	"gosamples/gocommerce/db"
+)
 
 // Product is
 type Product struct {
@@ -91,4 +93,15 @@ func FindByID(id string) Product {
 	}
 	defer db.Close()
 	return product
+}
+
+// Update is
+func Update(ID int, name string, convertedPrice float64, convertedAmount int, description string) {
+	db := db.OpenDBConnection()
+	sql := `UPDATE products SET name = $1, price = $2, amount = $3, description = $4 WHERE id = $5`
+	_, err := db.Exec(sql, name, convertedPrice, convertedAmount, description, ID)
+	if nil != err {
+		panic(err.Error())
+	}
+	defer db.Close()
 }
