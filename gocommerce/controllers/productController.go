@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"gosamples/gocommerce/models/products"
 	"html/template"
 	"log"
@@ -81,7 +80,7 @@ func Update(w http.ResponseWriter, req *http.Request) {
 		id := req.FormValue("id")
 		idConverted, _ := strconv.Atoi(id)
 
-		fmt.Println(idConverted, name, convertedPrice, convertedAmount, description)
+		// fmt.Println(idConverted, name, convertedPrice, convertedAmount, description)
 		products.Update(idConverted, name, convertedPrice, convertedAmount, description)
 	}
 	http.Redirect(w, req, "/", 303)
