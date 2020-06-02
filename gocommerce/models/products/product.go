@@ -18,7 +18,7 @@ type Product struct {
 // FindAll is
 func FindAll() []Product {
 	db := db.OpenDBConnection()
-	rows, err := db.Query("select * from products")
+	rows, err := db.Query("select * from products order by id asc")
 	if err != nil {
 		panic(err.Error)
 	}
