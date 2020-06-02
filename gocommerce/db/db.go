@@ -1,6 +1,9 @@
 package db
 
-import "database/sql"
+import (
+	"database/sql"
+	"log"
+)
 
 // SetupDB is
 func SetupDB() {
@@ -8,12 +11,22 @@ func SetupDB() {
 	statement, _ := db.Prepare("create table if not exists products (id INTEGER PRIMARY KEY, name TEXT, price REAL, amount INTEGER, description TEXT)")
 	statement.Exec()
 
-	statement, _ = db.Prepare("DELETE FROM products")
-	statement.Exec()
+	var count int
+	row := db.QueryRow("SELECT Count(*) FROM products")
 
-	statement, _ = db.Prepare("INSERT INTO products (name, price, amount, description) VALUES (?, ?, ?, ?)")
-	statement.Exec("iPhone11 Pro", 1998., 1, "Plus")
-	statement.Exec("Mackbook Pro", 2600., 2, "HD 512 SSD, Retina")
+	switch err := row.Scan(&count); err {
+	case sql.ErrNoRows:
+		statement, _ = db.Prepare("INSERT INTO products (name, price, amount, description) VALUES (?, ?, ?, ?)")
+		statement.Exec("iPhone11 Pro", 1998., 1, "Plus")
+		statement.Exec("Mackbook Pro", 2600., 2, "HD 512 SSD, Retina")
+
+	case nil:
+		log.Println("Database already loaded with", count, "records.")
+	default:
+		panic(err)
+
+	}
+
 	defer db.Close()
 }
 
