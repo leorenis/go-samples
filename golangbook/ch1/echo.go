@@ -4,6 +4,7 @@ package ch1
 import (
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -33,8 +34,19 @@ func Echo2() {
 	fmt.Println(s)
 }
 
+// ExerciseEcho2 is
+func ExerciseEcho2() {
+	s, sep := "", ""
+	for index, arg := range os.Args[1:] {
+		sep = " "
+		s += sep + strconv.Itoa(index) + sep + arg // ineficient way. Bad
+	}
+	fmt.Println(s)
+}
+
 // Echo3 is
 func Echo3() {
 	fmt.Println(strings.Join(os.Args[1:], " ")) // Eficient Way :) GOOD
 	fmt.Println(os.Args[1:])                    // Println way
+	fmt.Println(os.Args[0:])                    // Exercise 1.1 | P. 31
 }
