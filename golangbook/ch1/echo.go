@@ -11,7 +11,7 @@ import (
 
 // SliceRagesTesteds is
 func SliceRagesTesteds() {
-	s := []string{"Abobora", "tomate", "manga"}
+	s := []string{"Abobora", "tomate", "manga", "Melon"}
 	fmt.Println(s[0:3])
 }
 
