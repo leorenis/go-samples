@@ -35,9 +35,10 @@ func dup1() {
 // Exercise 1.4 | Page. 37
 func dup2() {
 	counts := make(map[string]int)
+	founds := make(map[string][]string)
 	files := os.Args[1:]
 	if len(files) == 0 {
-		countLines(os.Stdin, counts)
+		countLines(os.Stdin, counts, founds)
 	} else {
 		for _, arg := range files {
 			f, err := os.Open(arg)
@@ -45,22 +46,35 @@ func dup2() {
 				fmt.Fprintf(os.Stderr, "dup2: %v\n", err)
 				continue
 			}
-			countLines(f, counts)
+			countLines(f, counts, founds)
 			f.Close()
 		}
 	}
 
 	for line, n := range counts {
 		if n > 1 {
-			fmt.Printf("%d\t%s\n", n, line)
+			fmt.Printf("%d\t%v\t%s\n", n, founds[line], line)
 		}
 	}
 }
 
-func countLines(f *os.File, counts map[string]int) {
+func countLines(f *os.File, counts map[string]int, founds map[string][]string) {
 	input := bufio.NewScanner(f)
 	for input.Scan() {
-		fileAndTextLineComputed := f.Name() + " " + input.Text()
-		counts[fileAndTextLineComputed]++
+		line := input.Text()
+		counts[line]++
+
+		if !in(f.Name(), founds[line]) {
+			founds[line] = append(founds[line], f.Name())
+		}
 	}
+}
+
+func in(needle string, haystack []string) bool {
+	for _, arg := range haystack {
+		if needle == arg {
+			return true
+		}
+	}
+	return false
 }
