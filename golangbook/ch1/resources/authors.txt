@@ -3,3 +3,6 @@ Chaucer
 Orwell
 Larkin
 Larkin
+Sam Newman
+Julia Fowler
+Chaucer
