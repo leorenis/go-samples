@@ -25,7 +25,7 @@ func ShowLissajous() {
 	lissajous(os.Stdout)
 }
 
-// To run this program type: `go run book.go > out.gif`
+// To run this program type: `go run book.go > out.gif`. Remember: In book.go you have to call ch1.ShowLissajous()
 func lissajous(out io.Writer) {
 	const (
 		cycles  = 5     // número de revolucoes completas do oscilador x
