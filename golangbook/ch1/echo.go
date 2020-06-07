@@ -9,14 +9,23 @@ import (
 	"time"
 )
 
+// ShowEcho is
+func ShowEcho() {
+	sliceRagesTesteds()
+	echo1()
+	echo2()
+	exerciseEcho2()
+	echo3()
+}
+
 // SliceRagesTesteds is
-func SliceRagesTesteds() {
+func sliceRagesTesteds() {
 	s := []string{"Abobora", "tomate", "manga", "Melon"}
 	fmt.Println(s[0:3])
 }
 
 // Echo1 is
-func Echo1() {
+func echo1() {
 	var s, sep string
 	start := time.Now()
 	for i := 1; i < len(os.Args); i++ {
@@ -28,7 +37,7 @@ func Echo1() {
 }
 
 // Echo2 is
-func Echo2() {
+func echo2() {
 	s, sep := "", ""
 	for _, arg := range os.Args[1:] {
 		s += sep + arg // ineficient way. Bad
@@ -38,7 +47,7 @@ func Echo2() {
 }
 
 // ExerciseEcho2 is
-func ExerciseEcho2() {
+func exerciseEcho2() {
 	s, sep := "", ""
 	for index, arg := range os.Args[1:] {
 		sep = " "
@@ -48,7 +57,7 @@ func ExerciseEcho2() {
 }
 
 // Echo3 is
-func Echo3() {
+func echo3() {
 	started := time.Now()
 	fmt.Println(strings.Join(os.Args[1:], " ")) // Eficient Way :) GOOD
 	//fmt.Println(os.Args[1:])                    // Println way
