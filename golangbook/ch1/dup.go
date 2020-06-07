@@ -32,6 +32,7 @@ func dup1() {
 
 // Dup2 is
 // Exibe a contagem e o texto das linhas que aparecem mais de uma vez na entrada. Ele lê StdIn ou uma lista de arquivos nomeados.
+// Exercise 1.4 | Page. 37
 func dup2() {
 	counts := make(map[string]int)
 	files := os.Args[1:]
@@ -59,6 +60,7 @@ func dup2() {
 func countLines(f *os.File, counts map[string]int) {
 	input := bufio.NewScanner(f)
 	for input.Scan() {
-		counts[input.Text()]++
+		fileAndTextLineComputed := f.Name() + " " + input.Text()
+		counts[fileAndTextLineComputed]++
 	}
 }
