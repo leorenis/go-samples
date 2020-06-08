@@ -12,11 +12,11 @@ import (
 	"time"
 )
 
-var pallete = []color.Color{color.White, color.Black}
+var pallete = []color.Color{color.RGBA{0x00, 0x7d, 0x9c, 0xff}, color.RGBA{0x00, 0x00, 0x00, 0xff}}
 
 const (
 	whiteIndex = 0 // first pallet's color.
-	blackIndex = 1 // next pallet's color.
+	greenIndex = 1 // next pallet's color.
 )
 
 // ShowLissajous is
@@ -45,7 +45,7 @@ func lissajous(out io.Writer) {
 		for t := 0.0; t < cycles*2*math.Pi; t += res {
 			x := math.Sin(t)
 			y := math.Sin(t*freq + phase)
-			img.SetColorIndex(size+int(x*size+0.5), size+int(y*size+0.5), blackIndex)
+			img.SetColorIndex(size+int(x*size+0.5), size+int(y*size+0.5), greenIndex)
 		}
 		anim.Delay = append(anim.Delay, delay)
 		anim.Image = append(anim.Image, img)
