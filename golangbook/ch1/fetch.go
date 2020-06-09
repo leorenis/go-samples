@@ -6,12 +6,13 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"strings"
 )
 
 // Fetch is
 func Fetch() {
 	for _, url := range os.Args[1:] {
-		resp, err := http.Get(url)
+		resp, err := http.Get(urlNormalized(url))
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "fetch: %v\n", err)
 			os.Exit(1)
@@ -23,4 +24,12 @@ func Fetch() {
 			os.Exit(1)
 		}
 	}
+}
+
+func urlNormalized(url string) string {
+	prefix := "http://"
+	if strings.HasPrefix(url, prefix) {
+		return url
+	}
+	return prefix + url
 }
