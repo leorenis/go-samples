@@ -10,6 +10,7 @@ import (
 )
 
 // Fetch is
+// to run: go run book.go google.com
 func Fetch() {
 	for _, url := range os.Args[1:] {
 		resp, err := http.Get(urlNormalized(url))

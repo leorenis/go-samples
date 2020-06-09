@@ -11,6 +11,7 @@ import (
 )
 
 // FetchAll is
+// to run: go run book.go google.com g1.globo.com youtube.com
 func FetchAll() {
 	start := time.Now()
 	ch := make(chan string)
@@ -38,7 +39,9 @@ func fetch(url string, ch chan<- string) {
 		ch <- fmt.Sprintf("While reading %s: %v\n", url, err)
 		return
 	}
+
+	msecs := time.Since(start).Milliseconds()
 	secs := time.Since(start).Seconds()
 
-	ch <- fmt.Sprintf("\n%2.fs \t %7d \t %s", secs, nbytes, url)
+	ch <- fmt.Sprintf("%d \t %.2fs \t %7d \t %s", msecs, secs, nbytes, url)
 }

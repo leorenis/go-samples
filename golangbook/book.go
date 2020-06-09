@@ -6,5 +6,6 @@ func main() {
 	// ch1.ShowEcho()
 	// ch1.ShowDup()
 	// ch1.ShowLissajous()
-	ch1.Fetch()
+	// ch1.Fetch()
+	ch1.FetchAll()
 }
