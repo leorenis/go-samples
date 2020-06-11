@@ -22,13 +22,13 @@ const (
 // ShowLissajous is
 func ShowLissajous() {
 	rand.Seed(time.Now().UTC().UnixNano())
-	lissajous(os.Stdout)
+	lissajous(os.Stdout, 20)
 }
 
 // To run this program type: `go run book.go > out.gif`. Remember: In book.go you have to call ch1.ShowLissajous()
-func lissajous(out io.Writer) {
+// cycles: número de revolucoes completas do oscilador x
+func lissajous(out io.Writer, cycles float64) {
 	const (
-		cycles  = 5     // número de revolucoes completas do oscilador x
 		res     = 0.001 // resolucao angular
 		size    = 100   // canvas da imagem cobre de [-size..+size]
 		nframes = 64    // número de quadros da animacao

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 	"sync"
 )
 
@@ -57,8 +58,16 @@ func handlerServer3(w http.ResponseWriter, r *http.Request) {
 }
 
 func serverLissajous() {
-	http.HandleFunc("/", func(w http.ResponseWriter, h *http.Request) {
-		lissajous(w)
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		cycles := r.URL.Query().Get("cycles")
+		nCycles, err := strconv.ParseFloat(cycles, 64)
+		if err != nil {
+			lissajous(w, 20)
+			log.Printf("%s", err)
+		} else {
+			lissajous(w, nCycles)
+		}
+
 	})
 	http.ListenAndServe("localhost:8000", nil)
 }
