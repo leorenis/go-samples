@@ -13,7 +13,8 @@ var count int
 // StartServer is
 func StartServer() {
 	// server1()
-	server3()
+	// server3()
+	serverLissajous()
 }
 
 func server1() {
@@ -53,4 +54,11 @@ func handlerServer3(w http.ResponseWriter, r *http.Request) {
 	for k, v := range r.Form {
 		fmt.Fprintf(w, "Form[%q = %q\n", k, v)
 	}
+}
+
+func serverLissajous() {
+	http.HandleFunc("/", func(w http.ResponseWriter, h *http.Request) {
+		lissajous(w)
+	})
+	http.ListenAndServe("localhost:8000", nil)
 }
