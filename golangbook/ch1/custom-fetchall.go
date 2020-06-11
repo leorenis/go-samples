@@ -5,16 +5,14 @@ import (
 	"bufio"
 	"fmt"
 	"io"
-	"io/ioutil"
-	"net/http"
 	"os"
 	"strings"
 	"time"
 )
 
-// FetchAll is
+// CustomFetchAll is
 // to run: go run book.go google.com g1.globo.com youtube.com
-func FetchAll() {
+func CustomFetchAll() {
 	start := time.Now()
 
 	if len(os.Args) <= 1 {
@@ -37,26 +35,6 @@ func process(urls []string) {
 	for range urls {
 		fmt.Println(<-ch) // chanel receive
 	}
-}
-
-func fetch(url string, ch chan<- string) {
-	start := time.Now()
-	resp, err := http.Get(urlNormalized(url))
-	if err != nil {
-		ch <- fmt.Sprint(err) // Send to chanel ch
-		return
-	}
-	nbytes, err := io.Copy(ioutil.Discard, resp.Body)
-	resp.Body.Close() // avoid leak resource
-	if err != nil {
-		ch <- fmt.Sprintf("While reading %s: %v\n", url, err)
-		return
-	}
-
-	msecs := time.Since(start).Milliseconds()
-	secs := time.Since(start).Seconds()
-
-	ch <- fmt.Sprintf("%d \t %.2fs \t %7d \t %s", msecs, secs, nbytes, url)
 }
 
 func portals() []string {
