@@ -1,6 +1,6 @@
 package main
 
-import "gosamples/golangbook/ch1"
+import "gosamples/golangbook/ch2"
 
 func main() {
 	// ch1.ShowEcho()
@@ -9,5 +9,7 @@ func main() {
 	// ch1.Fetch()
 	// ch1.FetchAll()
 	// ch1.CustomFetchAll()
-	ch1.StartServer()
+	// ch1.StartServer()
+
+	ch2.ShowBoiling()
 }
