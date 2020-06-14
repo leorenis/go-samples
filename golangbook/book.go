@@ -11,5 +11,6 @@ func main() {
 	// ch1.CustomFetchAll()
 	// ch1.StartServer()
 
-	ch2.ShowBoiling()
+	// ch2.ShowBoiling()
+	ch2.ShowFtoc()
 }
