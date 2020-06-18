@@ -24,4 +24,14 @@ func pointers() {
 
 	var xs, xy int
 	fmt.Println(&xs == &xs, &xs == &xy, &xs == nil)
+	fmt.Println("Outside", pointerFn(), "Accessing value short declared inside:", *pointerFn())
+
+	// Each call returns a distinct value... (a new pointer to int)
+	fmt.Println("pointerFn() == pointerFn()", pointerFn() == pointerFn()) // False
+}
+
+func pointerFn() *int {
+	v := 1
+	fmt.Println("Inside fn:", &v)
+	return &v
 }
