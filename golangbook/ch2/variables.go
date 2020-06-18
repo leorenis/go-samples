@@ -6,6 +6,7 @@ import "fmt"
 func ShowVariables() {
 	// Curiosity
 	pointers()
+	newFn()
 }
 
 func pointers() {
@@ -36,4 +37,12 @@ func pointerFn() *int {
 func inc(p *int) int {
 	*p++
 	return *p
+}
+
+func newFn() {
+	p := new(int) // p, *int type, pointers to annonymous variable int.
+	fmt.Println(*p)
+
+	*p = 2
+	fmt.Println(*p)
 }
