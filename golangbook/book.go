@@ -12,6 +12,6 @@ func main() {
 	// ch1.StartServer()
 
 	// ch2.ShowBoiling()
-	// ch2.ShowFtoc()
-	ch2.ShowEchoFourth()
+	ch2.ShowFtoc()
+	// ch2.ShowEchoFourth()
 }

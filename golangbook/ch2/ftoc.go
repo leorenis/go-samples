@@ -21,6 +21,7 @@ func pointers() {
 	p := &x
 	fmt.Println("p has a address for x: ", p, " *p pointer for x value as you can see: *p=", *p, " and x=", x)
 	fmt.Printf("%d \n", p) // Var p is a pointer for a int variable
+	fmt.Println("Samething still crazy: ", &*p, &*p == p)
 
 	var xs, xy int
 	fmt.Println(&xs == &xs, &xs == &xy, &xs == nil)
