@@ -41,8 +41,8 @@ func inc(p *int) int {
 
 func newFn() {
 	p := new(int) // p, *int type, pointers to annonymous variable int.
-	fmt.Println(*p)
+	fmt.Println("The int without name with 0 `Initial value to int`", *p)
 
 	*p = 2
-	fmt.Println(*p)
+	fmt.Println("The int without name with: ", *p)
 }
