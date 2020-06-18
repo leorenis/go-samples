@@ -7,6 +7,7 @@ func ShowVariables() {
 	// Curiosity
 	pointers()
 	newFn()
+
 }
 
 func pointers() {
@@ -45,4 +46,19 @@ func newFn() {
 
 	*p = 2
 	fmt.Println("The int without name with:", *p)
+
+	// Each call to `new` returns a diferent variable with a different address.
+	a := new(int) // create a new int type variable without name.
+	b := new(int)
+	fmt.Println(a == b) // false
+}
+
+// The two functions bellow are the same... only written of diferents way.
+func fnNew() *int {
+	return new(int)
+}
+
+func funcfn2New() *int {
+	var dummy int
+	return &dummy
 }
