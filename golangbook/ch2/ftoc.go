@@ -28,10 +28,19 @@ func pointers() {
 
 	// Each call returns a distinct value... (a new pointer to int)
 	fmt.Println("pointerFn() == pointerFn()", pointerFn() == pointerFn()) // False
+
+	v := 1
+	inc(&v)              // Side effect: v now is 2
+	fmt.Println(inc(&v)) // "3" (and v is 3)
 }
 
 func pointerFn() *int {
 	v := 1
 	fmt.Println("Inside fn:", &v)
 	return &v
+}
+
+func inc(p *int) int {
+	*p++
+	return *p
 }
