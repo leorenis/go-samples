@@ -44,5 +44,5 @@ func newFn() {
 	fmt.Println("The int without name with 0 `Initial value to int`", *p)
 
 	*p = 2
-	fmt.Println("The int without name with: ", *p)
+	fmt.Println("The int without name with:", *p)
 }
