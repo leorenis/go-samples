@@ -1,11 +1,14 @@
 package ch2
 
+import "fmt"
+
 // Celsius is
 type Celsius float64
 
 // Fahrenheit is
 type Fahrenheit float64
 
+// Consts is
 const (
 	AbsoluteZeroC Celsius = -273.15
 	FreezingC     Celsius = 0
@@ -14,8 +17,13 @@ const (
 
 // ShowTempConv is
 func ShowTempConv() {
-	ctoF(10)
-	fahrenheitToC(10)
+	fmt.Printf("%g \n", ctoF(10))
+	fmt.Printf("%g \n", fahrenheitToC(10))
+	fmt.Printf("%g \n", Boiling-FreezingC)
+	fmt.Printf("%g \n", Boiling)
+	boilingF := ctoF(Boiling)
+	fmt.Printf("%g \n", boilingF-ctoF(FreezingC))
+	// fmt.Printf("%g \n", boilingF-FreezingC) // Erro de compilacao. Incompatibilidade de tipos
 }
 
 func ctoF(c Celsius) Fahrenheit          { return Fahrenheit(c*9/5 + 32) }
