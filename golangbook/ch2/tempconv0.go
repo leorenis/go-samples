@@ -19,9 +19,9 @@ const (
 func ShowTempConv() {
 	fmt.Printf("%g \n", ctoF(10))
 	fmt.Printf("%g \n", fahrenheitToC(10))
-	fmt.Printf("%g \n", Boiling-FreezingC)
+	fmt.Printf("%g \n", Boiling-FreezingC) // 100•C
 	boilingF := ctoF(Boiling)
-	fmt.Printf("%g \n", boilingF-ctoF(FreezingC))
+	fmt.Printf("%g \n", boilingF-ctoF(FreezingC)) // 180•C
 	// fmt.Printf("%g \n", boilingF-FreezingC) // Erro de compilacao. Incompatibilidade de tipos
 }
 
