@@ -14,7 +14,7 @@ func main() {
 	// ch2.ShowBoiling()
 	// ch2.ShowFtoc()
 	// ch2.ShowEchoFourth()
-	// ch2.ShowVariables()
+	ch2.ShowVariables()
 	// ch2.ShowTuples()
-	ch2.ShowTempConv()
+	// ch2.ShowTempConv()
 }
