@@ -28,7 +28,8 @@ func ShowTempConv() {
 	c := fahrenheitToC(212.0)
 	fmt.Println(c.String())
 	fmt.Printf("%v\n", c) // Nao ha necessidade de chamar metodo string explicitamente.
-	fmt.Println(c)
+	fmt.Println(c)        // Noa chama metodo String
+	fmt.Printf("%g\n", c)
 	fmt.Println(float64(c))
 
 }
