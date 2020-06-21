@@ -26,10 +26,13 @@ func ShowTempConv() {
 
 	// More exemples
 	c := fahrenheitToC(212.0)
-	fmt.Println(c.string())
+	fmt.Println(c.String())
+	fmt.Printf("%v\n", c) // Nao ha necessidade de chamar metodo string explicitamente.
+	fmt.Println(c)
+	fmt.Println(float64(c))
 
 }
 
 func ctoF(c Celsius) Fahrenheit          { return Fahrenheit(c*9/5 + 32) }
 func fahrenheitToC(f Fahrenheit) Celsius { return Celsius((f - 32) * 5 / 9) }
-func (c Celsius) string() string         { return fmt.Sprintf("%g °C", c) }
+func (c Celsius) String() string         { return fmt.Sprintf("%g °C", c) }
