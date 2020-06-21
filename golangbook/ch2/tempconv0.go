@@ -28,6 +28,4 @@ func ShowTempConv() {
 
 func ctoF(c Celsius) Fahrenheit          { return Fahrenheit(c*9/5 + 32) }
 func fahrenheitToC(f Fahrenheit) Celsius { return Celsius((f - 32) * 5 / 9) }
-func (c Celsius) string() string {
-	return fmt.Sprintf("%g °C", c)
-}
+func (c Celsius) string() string         { return fmt.Sprintf("%g °C", c) }
