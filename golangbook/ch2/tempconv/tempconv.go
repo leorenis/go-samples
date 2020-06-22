@@ -15,6 +15,7 @@ type Kelvin float64
 // Consts is
 const (
 	AbsoluteZeroC Celsius = -273.15
+	ZeroK         Kelvin  = -273.15
 	FreezingC     Celsius = 0
 	Boiling       Celsius = 100
 )
