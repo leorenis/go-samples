@@ -1,6 +1,8 @@
 package main
 
-import "gosamples/golangbook/ch2"
+import (
+	"gosamples/golangbook/ch2/tempconv"
+)
 
 func main() {
 	// ch1.ShowEcho()
@@ -16,5 +18,6 @@ func main() {
 	// ch2.ShowEchoFourth()
 	// ch2.ShowVariables()
 	// ch2.ShowTuples()
-	ch2.ShowTempConv()
+	// ch2.ShowTempConv()
+	tempconv.ShowTempConvTest()
 }
