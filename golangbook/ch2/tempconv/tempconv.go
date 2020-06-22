@@ -1,4 +1,4 @@
-// Package tempconv converts temperatures in severals scales.
+// Package tempconv converts temperatures in severals scales. Ex. 2.1 Golang Book
 package tempconv
 
 import "fmt"
