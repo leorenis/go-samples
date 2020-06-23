@@ -3,6 +3,7 @@ package ch2
 import (
 	"bufio"
 	"fmt"
+	"gosamples/golangbook/ch2/generalconv"
 	"gosamples/golangbook/ch2/tempconv"
 	"log"
 	"os"
@@ -38,5 +39,6 @@ func converter(arg string) {
 	}
 
 	// Prints
-	fmt.Println(tempconv.FToC(tempconv.Fahrenheit(number)))
+	fmt.Println("CToF: ", tempconv.CToF(tempconv.Celsius(number)))
+	fmt.Println("FeetToMetre:", generalconv.FeetToMetre(generalconv.Feet(number)))
 }
