@@ -41,4 +41,5 @@ func converter(arg string) {
 	// Prints
 	fmt.Println("CToF: ", tempconv.CToF(tempconv.Celsius(number)))
 	fmt.Println("FeetToMetre:", generalconv.FeetToMetre(generalconv.Feet(number)))
+	fmt.Println("LbsToKg:", generalconv.LbsToKg(generalconv.Libra(number)))
 }
