@@ -19,7 +19,7 @@ func (feet Feet) String() string {
 }
 
 func (m Metre) String() string {
-	return fmt.Sprintf("%g Meters", m)
+	return fmt.Sprintf("%g Mtrs", m)
 }
 
 func (kg Kilograma) String() string {

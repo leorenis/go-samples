@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"gosamples/golangbook/ch2/generalconv"
 	"gosamples/golangbook/ch2/tempconv"
-	"log"
 	"os"
 	"strconv"
 )
@@ -18,7 +17,6 @@ func ShowEx2Dot4() {
 
 func processInput() {
 	if len(os.Args[1:]) == 0 {
-		log.Println("Aqui")
 		input := bufio.NewScanner(os.Stdin)
 		for input.Scan() {
 			text := input.Text()
