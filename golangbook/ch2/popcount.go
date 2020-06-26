@@ -7,8 +7,8 @@ func init() {
 	for i := range pc {
 		pc[i] = pc[i/2] + byte(i&1)
 	}
-	j := 1
-	println(j & 1)
+	j := 20
+	println(j & 20)
 }
 
 // ShowPopCount is
