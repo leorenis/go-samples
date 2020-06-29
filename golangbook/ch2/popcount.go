@@ -1,6 +1,9 @@
 package ch2
 
-import "fmt"
+import (
+	"fmt"
+	"testing"
+)
 
 // pc[i] is the population of i
 var pc [256]byte
@@ -30,9 +33,25 @@ func popcount(x uint64) int {
 }
 
 // PopcountTableLoop is Ex.2.3
-func PopcountTableLoop(x uint64) {
+func PopcountTableLoop(x uint64) int {
 	sum := 0
 	for i := 0; i < 8; i++ {
 		sum += int(pc[byte(x>>uint(i))])
 	}
+}
+
+func bench(b *testing.B, f func(uint64) int) {
+	for i := 0; i < b.N; i++ {
+		f(uint64(i))
+	}
+}
+
+// BenchmarkTable is
+func BenchmarkTable(b *testing.B) {
+	bench(b, popcount)
+}
+
+// BenchmarkTableLoop is
+func BenchmarkTableLoop(b *testing.B) {
+	bench(b, PopcountTableLoop)
 }
