@@ -38,6 +38,7 @@ func PopcountTableLoop(x uint64) int {
 	for i := 0; i < 8; i++ {
 		sum += int(pc[byte(x>>uint(i))])
 	}
+	return sum
 }
 
 func bench(b *testing.B, f func(uint64) int) {
