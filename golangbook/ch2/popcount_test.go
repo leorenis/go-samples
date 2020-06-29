@@ -5,6 +5,9 @@ import (
 	"testing"
 )
 
+// To run this benchmark change to dir ch1 and run:
+// $  go test -bench=.
+
 // pc[i] is the population of i
 var pc [256]byte
 
