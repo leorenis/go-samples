@@ -1,4 +1,4 @@
-package ch2
+package popcount
 
 import (
 	"fmt"
