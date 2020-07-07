@@ -19,5 +19,6 @@ func main() {
 	// ch2.ShowTempConv()
 	// tempconv.ShowTempConvTest()
 	// ch2.ShowEx2Dot4()
-	ch2.ShowPopCount()
+	// ch2.ShowPopCount()
+	ch2.ShowScope()
 }
