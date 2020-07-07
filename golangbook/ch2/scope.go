@@ -17,7 +17,11 @@ func ScopeInIf() {
 		fmt.Println(s)
 	} else if y := anyOtherFn(s); s == y {
 		fmt.Println(s, y)
+	} else {
+		fmt.Println(s, y)
 	}
+
+	fmt.Println(s, y) // Compilation error. x and y are not enabled here...
 }
 
 func anyFn() int {
