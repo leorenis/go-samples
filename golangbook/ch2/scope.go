@@ -10,3 +10,20 @@ func ShowScope() {
 		fmt.Printf("%c", x)
 	}
 }
+
+// ScopeInIf is
+func ScopeInIf() {
+	if s := anyFn(); s == 0 {
+		fmt.Println(s)
+	} else if y := anyOtherFn(s); s == y {
+		fmt.Println(s, y)
+	}
+}
+
+func anyFn() int {
+	return 0
+}
+
+func anyOtherFn(s int) int {
+	return s
+}
