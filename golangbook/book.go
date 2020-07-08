@@ -1,6 +1,6 @@
 package main
 
-import "gosamples/golangbook/ch2"
+import "gosamples/golangbook/ch3"
 
 func main() {
 	// ch1.ShowEcho()
@@ -20,5 +20,7 @@ func main() {
 	// tempconv.ShowTempConvTest()
 	// ch2.ShowEx2Dot4()
 	// ch2.ShowPopCount()
-	ch2.ShowScope()
+	// ch2.ShowScope()
+
+	ch3.ShowOverflow()
 }
