@@ -4,6 +4,6 @@ import "fmt"
 
 // ShowOverflow is
 func ShowOverflow() {
-	var n uint8 = 255
-	fmt.Println(n)
+	var u uint8 = 255
+	fmt.Println(u, u+1, u*u)
 }
