@@ -1,6 +1,10 @@
 package ch2
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+	"os"
+)
 
 // ShowScope is
 func ShowScope() {
@@ -30,4 +34,30 @@ func anyFn() int {
 
 func anyOtherFn(s int) int {
 	return s
+}
+
+// Be carefull with scope
+
+var cwd string
+
+func init() {
+	cwd, err := os.Getwd() // NOTICE: Wrong way!
+	if err != nil {
+		log.Fatalf("os.GetWd failed: %v", err)
+	}
+
+	log.Printf("Working directory = %s", cwd)
+}
+
+// Tip: As cwd as err were initialized on line 44. The cwd in line 41 stay not initialized.
+// Check the rigth way bellow:
+
+var cwd2 string
+
+func init() {
+	var err error
+	cwd, err = os.Getwd()
+	if err != nil {
+		log.Fatalf("os.Getwd failed: %v", err)
+	}
 }
