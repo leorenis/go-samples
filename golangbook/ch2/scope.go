@@ -37,7 +37,6 @@ func anyOtherFn(s int) int {
 }
 
 // Be carefull with scope
-
 var cwd string
 
 func init() {
