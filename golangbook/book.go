@@ -22,5 +22,6 @@ func main() {
 	// ch2.ShowPopCount()
 	// ch2.ShowScope()
 
-	ch3.ShowOverflow()
+	// ch3.ShowOverflow()
+	ch3.ShowBitwise()
 }
