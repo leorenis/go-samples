@@ -24,6 +24,7 @@ func ShowBitwise() {
 
 	fmt.Printf("%08b\n", x<<1) // 01000100, o conjunto {2, 6}
 	fmt.Printf("%08b\n", x>>1) // 00010001, o conjunto {0, 4}
+
 }
 
 // Code same page of book, for this reason this code is here.
