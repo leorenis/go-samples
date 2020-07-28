@@ -23,5 +23,6 @@ func main() {
 	// ch2.ShowScope()
 
 	// ch3.ShowOverflow()
-	ch3.ShowBitwise()
+	// ch3.ShowBitwise()
+	ch3.ShowTypes()
 }
