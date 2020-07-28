@@ -24,4 +24,12 @@ func accuracyLoss() {
 	fmt.Println(f, i)
 	f = 1.99
 	fmt.Println(int(f))
+
+	f = 1e100
+	i = int(f)
+	fmt.Println(f, i)
 }
+
+// Note:
+//      Conversoes de ponto flutuante para inteiro descartam qualquer parte fracionaria.
+//      Truncando o resultado na direcao do zero.
