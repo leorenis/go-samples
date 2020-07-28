@@ -34,3 +34,8 @@ func medals() {
 		fmt.Println(medals[i]) // "bronze","silver","gold"
 	}
 }
+
+// Note: len() devolve um int com sinal.
+//       Se len devolvesse um numero sem sinal e.g. uint. Seria algo desastroso,
+//       Sendo que na terceira iteracao, em que i == 0, a instrucao i-- faria i se tornar
+//       o valor maximo de uint (por exemplo: (2 elevado 64) -1)
