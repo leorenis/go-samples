@@ -12,6 +12,7 @@ func differentesTypes() {
 	var oranges int16 = 2
 	// var compote int = apples + oranges <- Invalid operation (mismatched types int32 and int16)
 
+	// To solve: Use conversor
 	var compote = int(apples) + int(oranges)
 	fmt.Println(compote)
 }
