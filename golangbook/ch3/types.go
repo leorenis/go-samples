@@ -5,6 +5,7 @@ import "fmt"
 // ShowTypes is
 func ShowTypes() {
 	differentesTypes()
+	accuracyLoss()
 }
 
 func differentesTypes() {
@@ -15,4 +16,12 @@ func differentesTypes() {
 	// To solve: Use conversor
 	var compote = int(apples) + int(oranges)
 	fmt.Println(compote)
+}
+
+func accuracyLoss() {
+	f := 3.141
+	i := int(f)
+	fmt.Println(f, i)
+	f = 1.99
+	fmt.Println(int(f))
 }
