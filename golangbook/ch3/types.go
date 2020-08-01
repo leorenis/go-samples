@@ -37,5 +37,8 @@ func accuracyLoss() {
 
 func octalAndHexadecimal() {
 	o := 0777
-	fmt.Printf("%d %[1]o %#[1]o /n", o)
+	fmt.Printf("%d %[1]o %#[1]o \n", o) // 511 777 0777
+
+	x := int64(0xdeadbeef)
+	fmt.Printf("%d %[1]x %#[1]x %#[1]X \n", x) // 3735928559 deadbeef 0xdeadbeef 0XDEADBEEF
 }
