@@ -6,6 +6,7 @@ import "fmt"
 func ShowTypes() {
 	differentesTypes()
 	accuracyLoss()
+	octalAndHexadecimal()
 }
 
 func differentesTypes() {
@@ -33,3 +34,8 @@ func accuracyLoss() {
 // Note:
 //      Conversoes de ponto flutuante para inteiro descartam qualquer parte fracionaria.
 //      Truncando o resultado na direcao do zero.
+
+func octalAndHexadecimal() {
+	o := 0777
+	fmt.Printf("%d %[1]o %#[1]o /n", o)
+}
