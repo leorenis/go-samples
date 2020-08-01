@@ -7,6 +7,7 @@ func ShowTypes() {
 	differentesTypes()
 	accuracyLoss()
 	octalAndHexadecimal()
+	showRunas()
 }
 
 func differentesTypes() {
@@ -41,4 +42,13 @@ func octalAndHexadecimal() {
 
 	x := int64(0xdeadbeef)
 	fmt.Printf("%d %[1]x %#[1]x %#[1]X \n", x) // 3735928559 deadbeef 0xdeadbeef 0XDEADBEEF
+}
+
+func showRunas() {
+	ascii := 'a'
+	unicode := 'Ӕ'
+	newline := '\n'
+	fmt.Printf("%d %[1]c %[1]c %[1]q \n", ascii)
+	fmt.Printf("%d %[1]c %[1]c %[1]q \n", unicode)
+	fmt.Printf("%d %[1]q \n", newline)
 }
