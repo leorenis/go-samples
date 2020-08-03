@@ -1,6 +1,9 @@
 package ch3
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 // ShowTypes is
 func ShowTypes() {
@@ -63,4 +66,8 @@ func showFloats() {
 
 	fmt.Printf("%f == %f = ", f, f+1)
 	fmt.Println(f == f+1)
+
+	for x := 0; x < 8; x++ {
+		fmt.Printf("x = %d e^x = %8.3f\n", x, math.Exp(float64(x)))
+	}
 }
