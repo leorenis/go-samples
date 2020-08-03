@@ -8,6 +8,8 @@ func ShowTypes() {
 	accuracyLoss()
 	octalAndHexadecimal()
 	showRunas()
+
+	showFloats()
 }
 
 func differentesTypes() {
@@ -52,4 +54,13 @@ func showRunas() {
 	fmt.Printf("%d %[1]c %[1]c %[1]q \n", ascii)
 	fmt.Printf("%d %[1]c %[1]c %[1]q \n", unicode)
 	fmt.Printf("%d %[1]q \n", newline)
+}
+
+func showFloats() {
+	var f float32 = 1 << 24 // 16777216
+	fmt.Printf("%f\n", f)
+	fmt.Println(f) // notacao cientifica: https://bit.ly/39YABAw
+
+	fmt.Printf("%f == %f = ", f, f+1)
+	fmt.Println(f == f+1)
 }
