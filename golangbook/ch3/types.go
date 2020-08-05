@@ -13,6 +13,7 @@ func ShowTypes() {
 	showRunas()
 
 	showFloats()
+	doubtfulDivisors()
 }
 
 func differentesTypes() {
@@ -70,4 +71,9 @@ func showFloats() {
 	for x := 0; x < 8; x++ {
 		fmt.Printf("x = %d e^x = %8.3f\n", x, math.Exp(float64(x)))
 	}
+}
+
+func doubtfulDivisors() {
+	var z float64
+	fmt.Println(z, -z, 1/z, -1/z, z/z)
 }
