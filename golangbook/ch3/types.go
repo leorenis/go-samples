@@ -86,7 +86,7 @@ func showNaN() {
 }
 
 // Note:
-// If a function returns a float number fails, o melhor 'e informar a falha separadamente.
+// If a function returns a float number fails, the best thing to do is inform about error separately, like exemple bellow.
 
 func compute() (value float64, ok bool) {
 	failed := true
