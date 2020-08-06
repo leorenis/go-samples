@@ -14,6 +14,8 @@ func ShowTypes() {
 
 	showFloats()
 	doubtfulDivisors()
+	showNaN()
+	compute()
 }
 
 func differentesTypes() {
@@ -81,4 +83,17 @@ func doubtfulDivisors() {
 func showNaN() {
 	nan := math.NaN()
 	fmt.Println(nan == nan, nan < nan, nan > nan)
+}
+
+// Note:
+// If a function returns a float number fails, o melhor 'e informar a falha separadamente.
+
+func compute() (value float64, ok bool) {
+	failed := true
+	//...
+	if failed {
+		return 0, false
+	}
+	result := .999
+	return result, true
 }
