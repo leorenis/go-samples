@@ -77,3 +77,8 @@ func doubtfulDivisors() {
 	var z float64
 	fmt.Println(z, -z, 1/z, -1/z, z/z)
 }
+
+func showNaN() {
+	nan := math.NaN()
+	fmt.Println(nan == nan, nan < nan, nan > nan)
+}
