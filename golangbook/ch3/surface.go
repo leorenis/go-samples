@@ -24,13 +24,23 @@ func ShowSurface() {
 		"width='%d' height='%d'>", width, height)
 
 	for i := 0; i < cells; i++ {
+	OUTER:
 		for j := 0; j < cells; j++ {
 			ax, ay := corner(i+1, j)
 			bx, by := corner(i, j)
 			cx, cy := corner(i, j+1)
 			dx, dy := corner(i+1, j+1)
 
-			fmt.Printf("<polygon points='%g,%g, %g,%g, %g,%g, %g,%g' /> \n", ax, ay, bx, by, cx, cy, dx, dy)
+			// Exercise 3.1 solution
+			corners := []float64{ax, ay, bx, by, cx, cy, dx, dy}
+			for _, cElement := range corners {
+				if math.IsNaN(cElement) {
+					continue OUTER
+				}
+			}
+
+			fmt.Printf("<polygon points='%g,%g, %g,%g, %g,%g, %g,%g' /> \n",
+				ax, ay, bx, by, cx, cy, dx, dy)
 		}
 	}
 
