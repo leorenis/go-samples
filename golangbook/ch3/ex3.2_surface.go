@@ -9,7 +9,7 @@ import (
 
 type tFunc func(x, y float64) float64
 
-// ShowSurfaceEx3_2 is
+// ShowSurfaceEx3_2 is | `>_ go run book.go eggbox > outEx3.2.svg` OR `>_ go run book.go saddle > outEx3.2.svg`
 func ShowSurfaceEx3_2() {
 	usage := "Usage: Ex3.2 saddle|eggbox"
 	if len(os.Args) < 2 {
