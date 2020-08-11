@@ -7,21 +7,10 @@ import (
 	"os"
 )
 
-const (
-	width, height = 600, 320            // Canvas's size in pixel
-	cells         = 100                 // cells numbers grade
-	xyrange       = 30.0                // axes intervals (-xyrange..+xyrange)
-	xyscale       = width / 2 / xyrange // unit per pixels x or y
-	zscale        = height * .4         //unit pixels z
-	angle         = math.Pi / 6         // axes's angle x,y (=30°)
-)
-
-var sin30, cos30 = math.Sin(angle), math.Cos(angle) // seno(30°), cosseno(30°)
-
 type tFunc func(x, y float64) float64
 
-// ShowSurface is
-func ShowSurface() {
+// ShowSurfaceEx3_2 is
+func ShowSurfaceEx3_2() {
 	usage := "Usage: Ex3.2 saddle|eggbox"
 	if len(os.Args) < 2 {
 		fmt.Println(usage)
@@ -38,6 +27,8 @@ func ShowSurface() {
 		fmt.Println(usage)
 		os.Exit(1)
 	}
+
+	svg(f)
 }
 
 func svg(f tFunc) {
@@ -46,19 +37,18 @@ func svg(f tFunc) {
 		"width='%d' height='%d'>", width, height)
 
 	for i := 0; i < cells; i++ {
-	OUTER:
 		for j := 0; j < cells; j++ {
-			ax, ay := corner(i+1, j, f)
-			bx, by := corner(i, j, f)
-			cx, cy := corner(i, j+1, f)
-			dx, dy := corner(i+1, j+1, f)
+			ax, ay := cornerTFunc(i+1, j, f)
+			bx, by := cornerTFunc(i, j, f)
+			cx, cy := cornerTFunc(i, j+1, f)
+			dx, dy := cornerTFunc(i+1, j+1, f)
 
 			// Exercise 3.1 solution
 			corners := []float64{ax, ay, bx, by, cx, cy, dx, dy}
-			for _, cElement := range corners {
-				if math.IsNaN(cElement) {
-					continue OUTER
-				}
+			if any(corners, func(c float64) bool {
+				return math.IsNaN(c)
+			}) {
+				continue
 			}
 
 			fmt.Printf("<polygon points='%g,%g, %g,%g, %g,%g, %g,%g' /> \n",
@@ -69,7 +59,7 @@ func svg(f tFunc) {
 	fmt.Println("</svg>")
 }
 
-func corner(i, j int, f tFunc) (float64, float64) {
+func cornerTFunc(i, j int, f tFunc) (float64, float64) {
 	// Encontra o ponto (x,y) no canto da celula (i,j)
 	x := xyrange * (float64(i)/cells - .5)
 	y := xyrange * (float64(j)/cells - .5)
@@ -94,4 +84,13 @@ func saddle(x, y float64) float64 {
 	a2 := a * a
 	b2 := b * b
 	return (y*y/a2 - x*x/b2)
+}
+
+func any(vs []float64, f func(float64) bool) bool {
+	for _, v := range vs {
+		if f(v) {
+			return true
+		}
+	}
+	return false
 }
