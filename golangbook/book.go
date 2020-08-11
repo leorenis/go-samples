@@ -25,5 +25,6 @@ func main() {
 	// ch3.ShowOverflow()
 	// ch3.ShowBitwise()
 	// ch3.ShowTypes()
-	ch3.ShowSurface()
+	// ch3.ShowSurface()
+	ch3.ShowSurfaceEx3_2()
 }
