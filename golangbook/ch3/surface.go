@@ -58,10 +58,12 @@ func corner(i, j int) (float64, float64) {
 	// Make a isometric projection isometrica de (x,y,z) over (sx,sy) canvas SVG 2D
 	sx := width/2 + (x-y)*cos30*xyscale
 	sy := height/2 + (x+y)*sin30*xyscale - z*zscale
+
 	return sx, sy
 }
 
 func f(x, y float64) float64 {
 	r := math.Hypot(x, y) // distance of (0,0)
+
 	return math.Sin(r) / r
 }
