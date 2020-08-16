@@ -18,7 +18,8 @@ func ShowSurfaceEx3_4() {
 }
 
 func svgWriter(w io.Writer) {
-	fmt.Printf("<svg xmlns='http://www.w3.org/2000/svg' "+
+	zmin, zmax := minmax()
+	fmt.Fprintf(w, "<svg xmlns='http://www.w3.org/2000/svg' "+
 		"style='stroke:grey; fill: white; strokewidth:0.7' "+
 		"width='%d' height='%d'>", width, height)
 
@@ -37,10 +38,44 @@ func svgWriter(w io.Writer) {
 				continue
 			}
 
-			fmt.Printf("<polygon points='%g,%g, %g,%g, %g,%g, %g,%g' /> \n",
-				ax, ay, bx, by, cx, cy, dx, dy)
+			fmt.Fprintf(w, "<polygon  style='stroke: %s; fill: #222222' points='%g,%g, %g,%g, %g,%g, %g,%g' /> \n",
+				color(i, j, zmin, zmax), ax, ay, bx, by, cx, cy, dx, dy)
 		}
 	}
 
-	fmt.Println("</svg>")
+	fmt.Fprintln(w, "</svg>")
+}
+
+func color(i, j int, zmin, zmax float64) string {
+	min := math.NaN()
+	max := math.NaN()
+	for xoff := 0; xoff <= 1; xoff++ {
+		for yoff := 0; yoff <= 1; yoff++ {
+			x := xyrange * (float64(i+xoff)/cells - 0.5)
+			y := xyrange * (float64(j+yoff)/cells - 0.5)
+			z := f(x, y)
+			if math.IsNaN(min) || z < min {
+				min = z
+			}
+			if math.IsNaN(max) || z > max {
+				max = z
+			}
+		}
+	}
+
+	color := ""
+	if math.Abs(max) > math.Abs(min) {
+		red := math.Exp(math.Abs(max)) / math.Exp(math.Abs(zmax)) * 255
+		if red > 255 {
+			red = 255
+		}
+		color = fmt.Sprintf("#%02x0000", int(red))
+	} else {
+		blue := math.Exp(math.Abs(min)) / math.Exp(math.Abs(zmin)) * 255
+		if blue > 255 {
+			blue = 255
+		}
+		color = fmt.Sprintf("#0000%02x", int(blue))
+	}
+	return color
 }
