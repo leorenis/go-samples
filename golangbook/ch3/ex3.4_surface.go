@@ -3,33 +3,21 @@ package ch3
 // surface Calcs a render SVG 3D surface `go run book.go > out.svg`
 import (
 	"fmt"
+	"io"
 	"math"
-	"os"
+	"net/http"
 )
 
-// ShowSurfaceEx3_4 is | `>_ go run book.go eggbox > outEx3.2.svg` OR `>_ go run book.go saddle > outEx3.2.svg`
+// ShowSurfaceEx3_4 is
 func ShowSurfaceEx3_4() {
-	usage := "Usage: Ex3.2 saddle|eggbox"
-	if len(os.Args) < 2 {
-		fmt.Println(usage)
-		os.Exit(1)
-	}
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "image/svg+xml")
+		svgWriter(w)
+	})
 
-	var f tFunc
-	switch os.Args[1] {
-	case "saddle":
-		f = saddle
-	case "eggbox":
-		f = eggbox
-	default:
-		fmt.Println(usage)
-		os.Exit(1)
-	}
-
-	svgColor(f)
 }
 
-func svgColor(f tFunc) {
+func svgWriter(w io.Writer) {
 	fmt.Printf("<svg xmlns='http://www.w3.org/2000/svg' "+
 		"style='stroke:grey; fill: white; strokewidth:0.7' "+
 		"width='%d' height='%d'>", width, height)
