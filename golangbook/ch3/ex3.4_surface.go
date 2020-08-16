@@ -4,6 +4,7 @@ package ch3
 import (
 	"fmt"
 	"io"
+	"log"
 	"math"
 	"net/http"
 )
@@ -14,7 +15,7 @@ func ShowSurfaceEx3_4() {
 		w.Header().Set("Content-Type", "image/svg+xml")
 		svgWriter(w)
 	})
-
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
 func svgWriter(w io.Writer) {

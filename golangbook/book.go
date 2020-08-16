@@ -26,5 +26,6 @@ func main() {
 	// ch3.ShowBitwise()
 	// ch3.ShowTypes()
 	// ch3.ShowSurface()
-	ch3.ShowSurfaceEx3_2()
+	// ch3.ShowSurfaceEx3_2()
+	ch3.ShowSurfaceEx3_4()
 }
