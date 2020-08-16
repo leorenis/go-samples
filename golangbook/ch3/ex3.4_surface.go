@@ -46,6 +46,29 @@ func svgWriter(w io.Writer) {
 	fmt.Fprintln(w, "</svg>")
 }
 
+func minmax() (min float64, max float64) {
+	min = math.NaN()
+	max = math.NaN()
+	for i := 0; i < cells; i++ {
+		for j := 0; j < cells; j++ {
+			for xoff := 0; xoff <= 1; xoff++ {
+				for yoff := 0; yoff <= 1; yoff++ {
+					x := xyrange * (float64(i+xoff)/cells - 0.5)
+					y := xyrange * (float64(j+yoff)/cells - 0.5)
+					z := f(x, y)
+					if math.IsNaN(min) || z < min {
+						min = z
+					}
+					if math.IsNaN(max) || z > max {
+						max = z
+					}
+				}
+			}
+		}
+	}
+	return
+}
+
 func color(i, j int, zmin, zmax float64) string {
 	min := math.NaN()
 	max := math.NaN()
