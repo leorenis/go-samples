@@ -106,4 +106,9 @@ func showComplexTypes() {
 	fmt.Println(x * y)
 	fmt.Println(real(x * y))
 	fmt.Println(imag(x * y))
+
+	fmt.Println(1i * 1i) // (-1+0i)
+	xc := 1 + 2i
+	yc := 3 + 4i
+	fmt.Println(xc, yc)
 }
