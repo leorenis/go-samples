@@ -3,6 +3,7 @@ package ch3
 import (
 	"fmt"
 	"math"
+	"math/cmplx"
 )
 
 // ShowTypes is
@@ -111,4 +112,5 @@ func showComplexTypes() {
 	xc := 1 + 2i
 	yc := 3 + 4i
 	fmt.Println(xc, yc)
+	fmt.Println(cmplx.Sqrt(-1))
 }
