@@ -112,5 +112,5 @@ func showComplexTypes() {
 	xc := 1 + 2i
 	yc := 3 + 4i
 	fmt.Println(xc, yc)
-	fmt.Println(cmplx.Sqrt(-1))
+	fmt.Println(cmplx.Sqrt(-1)) // (0+1i)
 }
