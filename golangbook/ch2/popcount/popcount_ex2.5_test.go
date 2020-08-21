@@ -9,8 +9,6 @@ func init() {
 	for i := range pc {
 		pc[i] = pc[i/2] + byte(i&1)
 	}
-	/*j := 20
-	println(j & 20)*/
 }
 
 // PopCountClearRightMost is
