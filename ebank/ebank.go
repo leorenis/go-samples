@@ -34,13 +34,13 @@ func testsPointers() {
 	var jonysAccount *accounts.CurrentAccount
 	marysAccount = new(accounts.CurrentAccount)
 	jonysAccount = new(accounts.CurrentAccount)
-	marysAccount.Holder = customers.Customer{"Mary Doe", "700.070.900-11", "Mock"}
+	marysAccount.Holder = customers.Customer{"Mary Doe", "700.070.900-11", "Mock Mary Doe"}
 	jonysAccount.Holder = customers.Customer{"Jony Bale", "092.030.080-11", "Mock"}
 
 	fmt.Println(*jonysAccount, jonysAccount, &jonysAccount) // E.g. Out: {{  } 0 0 0} &{{  } 0 0 0} 0xc000102018
 	fmt.Println(marysAccount)
 
-	//// Pointers
+	// Pointers
 	s1 := mockAccountBuilder(1, 10, 1.0, perterCustomer)
 	s2 := mockAccountBuilder(1, 10, 1.0, leosCustomer)
 
