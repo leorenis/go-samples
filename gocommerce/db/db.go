@@ -18,7 +18,7 @@ func SetupDB() {
 	case sql.ErrNoRows:
 		statement, _ = db.Prepare("INSERT INTO products (name, price, amount, description) VALUES (?, ?, ?, ?)")
 		statement.Exec("iPhone11 Pro", 1998., 1, "Plus")
-		statement.Exec("Mackbook Pro", 2600., 2, "HD 512 SSD, Retina")
+		statement.Exec("Mackbook Pro", 2800., 2, "HD 255 SSD, Retina")
 
 	case nil:
 		log.Println("Database already loaded with", count, "records.")
