@@ -23,7 +23,7 @@ func sum(nums ...int) int {
 
 func testsPointers() {
 	perterCustomer := customers.Customer{"Peter Doe", "000.000.000-11", "Mock"}
-	leosCustomer := customers.Customer{"Leo Doe", "100.010.000-01", "Mock"}
+	leosCustomer := customers.Customer{"Mark Doe", "100.010.000-01", "Mock"}
 	petersAccount := mockAccountBuilder(9889, 73784, 199909.909, perterCustomer)
 	leosAccount := mockAccountBuilder(343, 3434, 10000000.909, leosCustomer)
 	fmt.Println(petersAccount)
@@ -34,7 +34,7 @@ func testsPointers() {
 	var jonysAccount *accounts.CurrentAccount
 	marysAccount = new(accounts.CurrentAccount)
 	jonysAccount = new(accounts.CurrentAccount)
-	marysAccount.Holder = customers.Customer{"Mary Doe", "700.070.900-11", "Mock Mary Doe"}
+	marysAccount.Holder = customers.Customer{"July Doe", "700.070.900-11", "Mock Mary Doe"}
 	jonysAccount.Holder = customers.Customer{"Jony Bale", "092.030.080-11", "Mock"}
 
 	fmt.Println(*jonysAccount, jonysAccount, &jonysAccount) // E.g. Out: {{  } 0 0 0} &{{  } 0 0 0} 0xc000102018
@@ -80,7 +80,7 @@ func testsAccounts() {
 	fmt.Println(mock6Account.GetBalance())
 
 	// Tests billet Payments
-	mock7Account := mockAccountBuilder(6263, 82384, 48989, customers.Customer{"Josh Lookort", "934.783.039-38", "Doctor"})
+	mock7Account := mockAccountBuilder(6263, 82384, 48989, customers.Customer{"Josh Lookort", "934.783.039-83", "Doctor"})
 	billets.Pay(&mock7Account, 300)
 	fmt.Println(mock7Account)
 
