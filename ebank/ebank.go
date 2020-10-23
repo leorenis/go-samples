@@ -22,8 +22,8 @@ func sum(nums ...int) int {
 }
 
 func testsPointers() {
-	perterCustomer := customers.Customer{"Peter Doe", "000.000.000-11", "Mock"}
-	leosCustomer := customers.Customer{"Mark Doe", "100.010.000-01", "Mock"}
+	perterCustomer := customers.Customer{"Philip Doe", "000.000.000-11", "Mock"}
+	leosCustomer := customers.Customer{"Ana Doe", "100.010.000-01", "Mock"}
 	petersAccount := mockAccountBuilder(9889, 73784, 199909.909, perterCustomer)
 	leosAccount := mockAccountBuilder(343, 3434, 10000000.909, leosCustomer)
 	fmt.Println(petersAccount)
@@ -71,7 +71,7 @@ func testsAccounts() {
 	// Tests Transfer...
 	mock4Account := mockAccountBuilder(313, 8454, 1900, customers.Customer{"John Karmac Doe", "010.010.010-01", "Dev"})   // He transfers to
 	mock5Account := mockAccountBuilder(633, 6534, 1200, customers.Customer{"John Lenon Doe", "101.010.110-10", "Singer"}) // Him
-	mock4Account.Transfer(450, &mock5Account)
+	mock4Account.Transfer(460, &mock5Account)
 	fmt.Println(mock4Account, mock5Account)
 
 	// Tests get balance
