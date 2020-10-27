@@ -23,9 +23,9 @@ func sum(nums ...int) int {
 
 func testsPointers() {
 	perterCustomer := customers.Customer{"Philip Doe", "000.000.000-11", "Mock"}
-	leosCustomer := customers.Customer{"Ana Doe", "100.010.000-01", "Mock"}
+	leosCustomer := customers.Customer{"Ana Doe", "110.010.010-01", "Mock"}
 	petersAccount := mockAccountBuilder(9889, 73784, 199909.909, perterCustomer)
-	leosAccount := mockAccountBuilder(343, 3434, 10000000.909, leosCustomer)
+	leosAccount := mockAccountBuilder(343, 3434, 10000000.929, leosCustomer)
 	fmt.Println(petersAccount)
 	fmt.Println(leosAccount)
 
