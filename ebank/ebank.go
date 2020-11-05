@@ -51,7 +51,7 @@ func testsPointers() {
 }
 
 func testsAccounts() {
-	mockAccount := mockAccountBuilder(323, 4234, 2960., customers.Customer{"Mock Acks One", "101.011.001-10", "Mock2"})
+	mockAccount := mockAccountBuilder(323, 4234, 2960., customers.Customer{"Mock Acks One", "101.011.001-10", "Mock1"})
 	mock2Account := mockAccountBuilder(943, 3476, 1200, customers.Customer{"Mock Acks Two", "001.001.001-01", "Mock2"})
 	fmt.Println("Withdraw:", mockAccount.GetBalance(), mock2Account.GetBalance())
 	mockAccount.Withdraw(200)
