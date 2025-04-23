@@ -2,3 +2,5 @@ app-monitor-go/app
 gocommerce/main
 ebank/ebank
 .idea
+gousreadersqlite/resources/database/users.db
+gousreadersqlite/main
