@@ -8,6 +8,7 @@ import (
 // Load is
 func Load() {
 	http.HandleFunc("/superusers", controllers.Index)
+	http.HandleFunc("/top-countries", controllers.TopCountries)
 
 	http.HandleFunc("/migrate", controllers.Migrate)
 }

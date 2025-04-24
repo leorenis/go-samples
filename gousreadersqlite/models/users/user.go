@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"encoding/json"
 	"gosamples/gousreadersqlite/db"
+	"gosamples/gousreadersqlite/models/countries"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -69,6 +70,34 @@ func FindAllSuperUsers() []User {
 	}
 	defer db.Close()
 	return users
+}
+
+func FindTopFiveCountries() []countries.Top {
+	db := db.OpenDBConnection()
+	rows, err := db.Query("select count(*) as total, u.country as country from users u group by country order by total desc limit 5")
+	if err != nil {
+		panic(err.Error())
+	}
+
+	top := countries.Top{}
+	topFive := []countries.Top{}
+
+	for rows.Next() {
+		var total int
+		var country string
+
+		err = rows.Scan(&total, &country)
+		if err != nil {
+			panic(err.Error())
+		}
+
+		top.Total = total
+		top.Country = country
+
+		topFive = append(topFive, top)
+	}
+	defer db.Close()
+	return topFive
 }
 
 // Public route

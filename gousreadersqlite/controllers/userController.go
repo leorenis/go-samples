@@ -13,6 +13,12 @@ func Index(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(users)
 }
 
+func TopCountries(w http.ResponseWriter, r *http.Request) {
+	topFive := users.FindTopFiveCountries()
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(topFive)
+}
+
 func Migrate(w http.ResponseWriter, r *http.Request) {
 	users.Migrate()
 	w.Header().Set("Content-Type", "application/json")
