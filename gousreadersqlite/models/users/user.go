@@ -5,9 +5,11 @@ import (
 	"encoding/json"
 	"gosamples/gousreadersqlite/db"
 	"gosamples/gousreadersqlite/models/countries"
+	"gosamples/gousreadersqlite/models/insights"
 	"io/ioutil"
 	"log"
 	"net/http"
+	"slices"
 	"strconv"
 )
 
@@ -100,6 +102,90 @@ func FindTopFiveCountries() []countries.Top {
 	return topFive
 }
 
+func FindInsights() []insights.Team {
+	db := db.OpenDBConnection()
+	// get total members
+	rows, err := db.Query("select count(*) as totalMembers, name as teamName from teams group by name order by name")
+	if err != nil {
+		panic(err.Error())
+	}
+	team := insights.Team{}
+	teamInsights := []insights.Team{}
+
+	for rows.Next() {
+		var totalMembers int
+		var teamName string
+
+		err = rows.Scan(&totalMembers, &teamName)
+		if err != nil {
+			panic(err.Error())
+		}
+		team.Name = teamName
+		team.TotalMembers = totalMembers
+		teamInsights = append(teamInsights, team)
+	}
+
+	// Get Total Leaders
+	rows, err = db.Query("select name as teamName, count(*) as totalLeaders from teams group by name,leader having leader=1 order by name")
+	if err != nil {
+		panic(err.Error())
+	}
+
+	for rows.Next() {
+		var totalLeaders int
+		var teamName string
+		err = rows.Scan(&teamName, &totalLeaders)
+		if err != nil {
+			panic(err.Error())
+		}
+		/***
+		* Important: Keep the name teamName in a Query to indexFunc. Complexity O(n)
+		* Learning: https://stackoverflow.com/questions/38654383/how-to-search-for-an-element-in-a-golang-slice
+		* https://pkg.go.dev/slices#IndexFunc
+		**/
+		idx := slices.IndexFunc(teamInsights, func(t insights.Team) bool { return t.Name == teamName })
+		teamInsights[idx].TotalLeaders = totalLeaders
+	}
+
+	// Get Total projects done
+	rows, err = db.Query("select t.name as teamName, count(*) as totalProjects from projects p inner join teams t on t.id=p.teamid where p.done=1 group by t.name")
+	if err != nil {
+		panic(err.Error())
+	}
+
+	for rows.Next() {
+		var totalProjects int
+		var teamName string
+		err = rows.Scan(&teamName, &totalProjects)
+		if err != nil {
+			panic(err.Error())
+		}
+		idx := slices.IndexFunc(teamInsights, func(t insights.Team) bool { return t.Name == teamName })
+		teamInsights[idx].TotalProjectsDone = totalProjects
+	}
+
+	// Get Total Active Members
+	rows, err = db.Query("select t.name as teamName, count(*) as totalActiveMembers from users u inner join teams t on u.id == t.userid where u.active=1 group by t.name")
+	if err != nil {
+		panic(err.Error())
+	}
+
+	for rows.Next() {
+		var totalActiveMembers int
+		var teamName string
+		err = rows.Scan(&teamName, &totalActiveMembers)
+		if err != nil {
+			panic(err.Error())
+		}
+		idx := slices.IndexFunc(teamInsights, func(t insights.Team) bool { return t.Name == teamName })
+		teamInsights[idx].TotalActiveMembers = totalActiveMembers
+		teamInsights[idx].PercentActiveMembers = totalActiveMembers * 100 / teamInsights[idx].TotalMembers
+	}
+
+	defer db.Close()
+	return teamInsights
+}
+
 // Public route
 func Migrate() {
 	db := db.OpenDBConnection()
@@ -156,17 +242,17 @@ func saveUser(user *User) {
 		statement, _ = db.Prepare("INSERT INTO teams (name, leader, userid) VALUES (?, ?, ?)")
 		rs, _ = statement.Exec(user.Team.Name, bool2Int(user.Team.Leader), userid)
 
-		statement, _ = db.Prepare("INSERT INTO logs (moment, action, userid) VALUES (?, ?, ?)")
-		for _, log2Save := range user.Logs {
-			rs, _ = statement.Exec(log2Save.Moment, log2Save.Action, userid)
-		}
-
 		teamid, errTeamId := rs.LastInsertId()
 		if errTeamId == nil {
 			statement, _ = db.Prepare("INSERT INTO projects (name, done, teamid) VALUES (?, ?, ?)")
 			for _, project := range user.Team.Projects {
 				rs, _ = statement.Exec(project.Name, bool2Int(project.Done), teamid)
 			}
+		}
+
+		statement, _ = db.Prepare("INSERT INTO logs (moment, action, userid) VALUES (?, ?, ?)")
+		for _, log2Save := range user.Logs {
+			rs, _ = statement.Exec(log2Save.Moment, log2Save.Action, userid)
 		}
 	}
 
