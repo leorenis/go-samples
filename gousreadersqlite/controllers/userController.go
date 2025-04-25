@@ -19,6 +19,12 @@ func TopCountries(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(topFive)
 }
 
+func TeamInsights(w http.ResponseWriter, r *http.Request) {
+	insights := users.FindInsights()
+	json.NewEncoder(w).Encode(insights)
+}
+
+// Migrate
 func Migrate(w http.ResponseWriter, r *http.Request) {
 	users.Migrate()
 	w.Header().Set("Content-Type", "application/json")
