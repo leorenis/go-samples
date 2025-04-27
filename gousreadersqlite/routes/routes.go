@@ -9,8 +9,8 @@ import (
 // Load is
 func Load() {
 	http.Handle("/superusers", middlewares.DurationTiming(http.HandlerFunc(controllers.Index)))
-	http.HandleFunc("/top-countries", controllers.TopCountries)
-	http.HandleFunc("/team-insights", controllers.TeamInsights)
+	http.Handle("/top-countries", middlewares.DurationTiming(http.HandlerFunc(controllers.TopCountries)))
+	http.Handle("/team-insights", middlewares.DurationTiming(http.HandlerFunc(controllers.TeamInsights)))
 
 	http.HandleFunc("/migrate", controllers.Migrate)
 }
