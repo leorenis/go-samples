@@ -3,7 +3,7 @@
 ### Pra Expor o json em formato Resource API, usei json server
 
 Para executar, use:
-```
+```bash
 npx json-server db-usrs.json
 ```
 
