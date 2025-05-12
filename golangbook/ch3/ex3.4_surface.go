@@ -40,7 +40,7 @@ func svgWriter(w io.Writer) {
 			}
 
 			fmt.Fprintf(w, "<polygon  style='stroke: %s; fill: #222222' points='%g,%g, %g,%g, %g,%g, %g,%g' /> \n",
-				color(i, j, zmin, zmax), ax, ay, bx, by, cx, cy, dx, dy)
+				colorSurf(i, j, zmin, zmax), ax, ay, bx, by, cx, cy, dx, dy)
 		}
 	}
 
@@ -70,7 +70,7 @@ func minmax() (min float64, max float64) {
 	return
 }
 
-func color(i, j int, zmin, zmax float64) string {
+func colorSurf(i, j int, zmin, zmax float64) string {
 	min := math.NaN()
 	max := math.NaN()
 	for xoff := 0; xoff <= 1; xoff++ {
